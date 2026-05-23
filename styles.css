@@ -249,3 +249,90 @@ footer{
   font-size:16px;
   color:#3E2B25;
 }
+.menu-container{
+  display:flex;
+  max-width:1100px;
+  margin:40px auto;
+  padding:0 20px;
+  gap:40px;
+}
+
+.menu-sidebar{
+  width:200px;
+  position:sticky;
+  top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.category-btn{
+  width:100%;
+  height:50px;
+  background:#7B5235;
+  color:white;
+  text-decoration:none;
+  font-family:'Manrope', sans-serif;
+  font-weight:800;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:15px;
+}
+
+.category-btn:hover{
+  background:#6D4A33;
+}
+
+.menu-content{
+  flex:1;
+}
+
+.menu-category{
+  margin-bottom:50px;
+}
+
+.menu-category h2{
+  font-family:'Unbounded', sans-serif;
+  font-weight:700;
+  font-size:28px;
+  color:#6F4E37;
+  margin-bottom:20px;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+}
+
+.menu-item{
+  background:#FFFFFF;
+  padding:15px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.menu-item img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:15px;
+  margin-bottom:10px;
+}
+
+.menu-item h3{
+  font-family:'Manrope', sans-serif;
+  font-weight:800;
+  font-size:18px;
+  color:#3E2B25;
+  margin-bottom:5px;
+}
+
+.menu-item .price{
+  font-family:'Unbounded', sans-serif;
+  font-weight:700;
+  font-size:16px;
+  color:#7B5235;
+}
