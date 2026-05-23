@@ -17,5 +17,9 @@ def menu():
 def about():
     return render_template('about.html')
 
+@app.route('/receipt')
+def receipt_page():
+    return render_template('receipt.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
