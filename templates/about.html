@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
@@ -17,9 +17,9 @@
   <nav class="navbar">
     <h1 class="logo">Roderick Café</h1>
     <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="about.html">About us</a>
+      <a href="/">Home</a>
+      <a href="/menu">Menu</a>
+      <a href="/about">About us</a>
     </div>
   </nav>
 
@@ -29,7 +29,7 @@
       <p class="hero-subtitle">Crafting your perfect cup, every single day. Meet the team that makes the magic happen.</p>
     </div>
 
-    <img src="baristas.png" class="about-hero-bg" alt="Baristas" />
+    <img src="{{ url_for('static', filename='images/baristas.png') }}" class="about-hero-bg" alt="Baristas" />
 
     <div class="about-disclaimer">
       <div class="disclaimer-title">DISCLAIMER</div>
@@ -53,11 +53,11 @@
 
     <div class="footer-bottom">
       <div class="social-icons">
-        <img src="facebook.png" alt="Facebook">
-        <img src="instagram.png" alt="Instagram">
-        <img src="tiktok.png" alt="TikTok">
-        <img src="twitter.png" alt="Twitter">
-        <img src="linkedin.png" alt="LinkedIn">
+        <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook">
+        <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram">
+        <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="TikTok">
+        <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter">
+        <img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="LinkedIn">
       </div>
       <div class="copyright">
         © Roderick Café Ordering System. All rights reserved.

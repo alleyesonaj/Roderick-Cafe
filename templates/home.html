@@ -10,7 +10,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
@@ -20,16 +20,16 @@
     <h1 class="logo">Roderick Café</h1>
 
     <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="about.html">About us</a>
+      <a href="/">Home</a>
+      <a href="/menu">Menu</a>
+      <a href="/about">About us</a>
     </div>
 
   </nav>
 
   <section class="hero">
 
-    <img src="coffee_background.png" class="hero-bg">
+    <img src="{{ url_for('static', filename='images/coffee_background.png') }}" class="hero-bg">
 
     <div class="hero-content">
 
@@ -38,7 +38,7 @@
         CRAVINGS
       </div>
 
-      <img src="coffee.png" class="coffee-center">
+      <img src="{{ url_for('static', filename='images/coffee.png') }}" class="coffee-center">
 
       <div class="hero-title-bottom">
         DELIVERED <br>
@@ -77,11 +77,11 @@
     <div class="footer-bottom">
 
       <div class="social-icons">
-        <img src="facebook.png">
-        <img src="instagram.png">
-        <img src="tiktok.png">
-        <img src="twitter.png">
-        <img src="linkedin.png">
+        <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook">
+        <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram">
+        <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="TikTok">
+        <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter">
+        <img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="LinkedIn">
       </div>
 
       <div class="copyright">
