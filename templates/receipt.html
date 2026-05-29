@@ -13,24 +13,30 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <h1 class="logo">Roderick Café</h1>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/menu">Menu</a>
-            <a href="/about">About us</a>
-        </div>
-    </nav>
-    
-
-<main class="main-content">
-    <div class="receipt-wrapper">
-        <img class="receipt-bg" src="{{ url_for('static', filename='images/receipt.png') }}" alt="Receipt">
-        
-        <div class="receipt-content">
-            </div>
+  <nav class="navbar">
+    <h1 class="logo">Roderick Café</h1>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/menu">Menu</a>
+      <a href="/about">About us</a>
     </div>
-</main>
+  </nav>
+
+  <main class="main-content">
+    <div class="receipt-wrapper">
+      <img class="receipt-bg" src="{{ url_for('static', filename='images/receipt.png') }}" alt="Receipt">
+      
+      <div class="receipt-content">
+        <div class="field-order-id"><span>RECEIPT #:</span></div>
+        <div class="field-customer"><span>CUSTOMER:</span></div>
+        <div class="field-service"><span>SERVICE TYPE:</span></div>
+
+        <div class="field-dynamic-items-list"></div>
+        <div class="field-total-cost-amount"></div>
+        <div class="field-payment-type-method"></div>
+      </div>
+    </div>
+  </main>
 
 </body>
 </html>
