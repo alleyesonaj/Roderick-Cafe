@@ -21,5 +21,10 @@ def about():
 def receipt_page():
     return render_template('receipt.html')
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

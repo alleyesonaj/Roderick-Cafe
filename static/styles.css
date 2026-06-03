@@ -11,6 +11,20 @@ body{
   overflow-x:hidden;
 }
 
+/* Make pages use a column flex layout so footer can sit at bottom on short pages */
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main{
+  flex: 1 0 auto;
+}
+
 
 .navbar{
   width:100%;
@@ -20,6 +34,7 @@ body{
   flex-direction:column;
   align-items:center;
   padding-top:18px;
+  position:relative;
 }
 
 .logo{
@@ -41,6 +56,21 @@ body{
   font-weight:800;
   font-size:20px;
   color:#7B5235;
+}
+
+
+.cart-link{
+  position:absolute;
+  right:28px;
+  top:22px;
+  display:inline-block;
+}
+
+.cart-link img{
+  width:80px;
+  height:80px;
+  object-fit:contain;
+  cursor:pointer;
 }
 
 

@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us | Roderick Café</title>
+  <title>Cart | Roderick Café</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
 
   <nav class="navbar">
@@ -24,27 +23,9 @@
     </a>
   </nav>
 
-  <section class="about-hero">
-    <div class="about-copy">
-      <div class="about-title-top">The Baristas</div>
-      <p class="hero-subtitle">Freshly brewed coffee with freshly cute baristas.</p>
-    </div>
-
-      <img src="{{ url_for('static', filename='images/beans left.png') }}"
-       class="beans-left"
-       alt="Coffee Beans Left">
-
-  <img src="{{ url_for('static', filename='images/beans right.png') }}"
-       class="beans-right"
-       alt="Coffee Beans Right">
-
-    <img src="{{ url_for('static', filename='images/baristas.png') }}" class="about-hero-bg" alt="Baristas" />
-
-    <div class="about-disclaimer">
-      <div class="disclaimer-title">DISCLAIMER</div>
-      <div class="disclaimer-text">Hindi kasama sa Menu</div>
-    </div>
-  </section>
+  <main style="max-width:1100px;margin:40px auto;padding:0 20px;">
+    <h2 style="font-family:'Unbounded', sans-serif;font-size:36px;color:#6F4E37;margin-bottom:12px;">Your Cart</h2>
+  </main>
 
   <footer>
     <div class="footer-top">
