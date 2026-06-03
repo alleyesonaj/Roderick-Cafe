@@ -21,5 +21,13 @@ def about():
 def receipt_page():
     return render_template('receipt.html')
 
+@app.route('/order')
+def order():
+    return render_template('order.html')
+
+@app.route('/order-menu')
+def order_menu():
+    return render_template('order-menu.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
