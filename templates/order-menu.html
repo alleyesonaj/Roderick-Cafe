@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Menu | Roderick Café</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <h1 class="logo">Roderick Café</h1>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/menu">Menu</a>
+      <a href="/about">About us</a>
+    </div>
+  </nav>
+
+  <main class="menu-container">
+    
+    <aside class="menu-sidebar">
+      <a href="#coffee-section" class="category-btn">COFFEE</a>
+      <a href="#non-coffee-section" class="category-btn">NON-COFFEE</a>
+      <a href="#pastries-section" class="category-btn">PASTRIES</a>
+    </aside>
+
+    <section class="menu-content">
+
+      <div id="orderGreeting" class="order-greeting-banner"></div>
+
+      <div id="coffee-section" class="menu-category">
+        <h2>COFFEE</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/americano.png') }}" alt="Americano">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Americano</h3>
+                <div class="price">130</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/latte.png') }}" alt="Latte">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Latte</h3>
+                <div class="price">145</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/macchiato.png') }}" alt="Macchiato">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Macchiato</h3>
+                <div class="price">150</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/mocha.png') }}" alt="Cappuccino"> 
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Cappuccino</h3>
+                <div class="price">150</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div id="non-coffee-section" class="menu-category">
+        <h2>NON-COFFEE</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/matcha.png') }}" alt="Matcha">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Matcha</h3>
+                <div class="price">130</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/cnc.png') }}" alt="Cookies and Cream">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Cookies and Cream</h3>
+                <div class="price">140</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/strawberry.png') }}" alt="Strawberry">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Strawberry</h3>
+                <div class="price">140</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="pastries-section" class="menu-category">
+        <h2>PASTRIES</h2>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/bananabread.jpg') }}" alt="Banana Bread">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Banana Bread</h3>
+                <div class="price">120</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/brownies.jpg') }}" alt="Brownies">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Brownies</h3>
+                <div class="price">90</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/smores.jpg') }}" alt="S'mores">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>S'mores</h3>
+                <div class="price">90</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+          <div class="menu-item">
+            <img src="{{ url_for('static', filename='images/crinkles.jpg') }}" alt="Crinkles">
+            <div class="item-details-row">
+              <div class="item-text-left">
+                <h3>Crinkles</h3>
+                <div class="price">80</div>
+              </div>
+              <button class="add-item-btn">
+                <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const name = localStorage.getItem('customerName') || 'Guest';
+    const type = localStorage.getItem('serviceType') || 'Dine-in';
+    document.getElementById('orderGreeting').innerText = `Ordering for: ${name} (${type})`;
+  </script>
+
+</body>
+</html>
