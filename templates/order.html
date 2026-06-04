@@ -19,9 +19,12 @@
       <a href="/menu">Menu</a>
       <a href="/about">About us</a>
     </div>
+    <a href="{{ url_for('cart') }}" class="cart-link">
+      <img src="{{ url_for('static', filename='images/cart-button.png') }}" alt="Cart">
+    </a>
   </nav>
 
-  <main class="main-content">
+  <main>
     <div class="order-form-box">
       <h2 class="order-title">Welcome to Roderick Café</h2>
       <p class="order-subtitle">Please enter your details to start ordering</p>
@@ -49,7 +52,7 @@
     </div>
   </main>
 
-<script>
+  <script>
     document.getElementById('startOrderBtn').addEventListener('click', function() {
       var name = document.getElementById('customerName').value.trim();
       var type = document.querySelector('input[name="serviceType"]:checked').value;
@@ -58,11 +61,10 @@
         alert("Please enter your name to proceed!");
         return;
       }
-      
+
       localStorage.setItem('customerName', name);
       localStorage.setItem('serviceType', type);
 
-  
       window.location.href = "{{ url_for('order_menu') }}";
     });
   </script>

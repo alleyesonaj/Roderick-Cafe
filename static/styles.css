@@ -37,6 +37,19 @@ main{
   position:relative;
 }
 
+/* navbar divider line | home, about, menu, order-menu, cart */
+.navbar::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:300px;
+  height:2px;
+  background:linear-gradient(to right, transparent, #7B5235, transparent);
+  border-radius:999px;
+}
+
 /* logo | home, about, menu, order-menu, cart */
 .logo{ /* edits "Roderick Café" */
   font-family:'Chewy', cursive;
@@ -61,6 +74,15 @@ main{
   font-weight:800;
   font-size:14px;
   color:#7B5235;
+}
+
+/* navbar divider line | home, about, menu, order-menu, cart */
+.navbar-line{
+  width:280px;
+  height:2px;
+  background:#787878;
+  margin:8px auto 0;
+  display:block;
 }
 
 /* cart link | home, about, menu, order-menu, cart */
@@ -385,6 +407,7 @@ footer{
   color:#5D361A;
   margin-top:10px;
   padding-left:0;
+  margin-left:60px;   /* counteract the section shift */
 }
 
 /* menu section | menu */
@@ -392,6 +415,7 @@ footer{
   max-width:900px;
   margin:30px auto;
   padding:0 40px;
+  margin-left:100px;
 }
 
 /* menu display grid | menu */
@@ -417,14 +441,14 @@ footer{
   border-radius:20px;
   padding:20px 15px;
   display:flex;
-  justify-content:center;
+  justify-content:flex-start;
   align-items:center;
 }
 
 /* menu display item image | menu */
 .menu-display-item img{
-  width:200px;
-  height:200px;
+  width:270px;
+  height:270px;
   object-fit:contain;
 }
 
