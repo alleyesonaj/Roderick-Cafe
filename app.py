@@ -17,6 +17,10 @@ def menu():
 def about():
     return render_template('about.html')
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
+
 @app.route('/receipt')
 def receipt_page():
     return render_template('receipt.html')
