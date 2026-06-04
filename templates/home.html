@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Playfair+Display:wght@700&family=Unbounded:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
@@ -29,28 +29,9 @@
 
   </nav>
 
-  <section class="hero">
+<p class="home-tagline">Your Favorite Cravings Delivered<br>Straight to your Screen</p>
 
-    <img src="{{ url_for('static', filename='images/coffee_background.png') }}" class="hero-bg">
-
-    <div class="hero-content">
-
-      <div class="hero-title-top">
-        YOUR FAVORITE <br>
-        CRAVINGS
-      </div>
-
-      <img src="{{ url_for('static', filename='images/coffee.png') }}" class="coffee-center">
-
-      <div class="hero-title-bottom">
-        DELIVERED <br>
-        STRAIGHT TO YOUR <br>
-        SCREEN
-      </div>
-
-    </div>
-
-  </section>
+<p class="home-description">The ultimate cafe experience is now at your fingertips. Whether you're working hard<br> or taking a well-deserved break, our app makes getting premium brews and treats<br> effortless. Just customize your drink, add to cart, and we'll handle the rest!</p>
 
 <div class="button-container">
   <a href="{{ url_for('order') }}">
@@ -58,6 +39,10 @@
       ORDER NOW
     </button>
   </a>
+</div>
+
+<div class="home-picture-container">
+  <img src="{{ url_for('static', filename='images/home-picture.png') }}" alt="Home Picture">
 </div>
 
   <footer>

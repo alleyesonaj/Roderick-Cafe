@@ -24,96 +24,44 @@
     </a>
   </nav>
 
-  <section class="menu-hero">
-    <div class="menu-copy">
-      <div class="menu-title-top">Our Menu</div>
+  <main>
+    <h2 class="menu-heading">Our Signature Menu</h2>
+
+    <!-- COFFEE SECTION -->
+    <div class="menu-section">
+      <h3 class="menu-category-label">COFFEE</h3>
+      <div class="menu-display-grid grid-4">
+        <div class="menu-display-item">
+          <img src="{{ url_for('static', filename='images/MENU_AMERICANO.png') }}" alt="Americano">
+        </div>
+        <div class="menu-display-item">
+          <img src="{{ url_for('static', filename='images/MENU_LATTE.png') }}" alt="Latte">
+        </div>
+        <div class="menu-display-item">
+          <img src="{{ url_for('static', filename='images/MENU_MACCHIATO.png') }}" alt="Macchiato">
+        </div>
+        <div class="menu-display-item">
+          <img src="{{ url_for('static', filename='images/MENU_MOCHA.png') }}" alt="Mocha">
+        </div>
+      </div>
     </div>
-  </section>
 
-  <main class="menu-container">
-    
-    <aside class="menu-sidebar">
-      <a href="#coffee-section" class="category-btn">COFFEE</a>
-      <a href="#non-coffee-section" class="category-btn">NON-COFFEE</a>
-      <a href="#pastries-section" class="category-btn">PASTRIES</a>
-    </aside>
-
-    <section class="menu-content">
-
-      <div id="coffee-section" class="menu-category">
-        <h2>COFFEE</h2>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/americano.png') }}" alt="Americano">
-            <h3>Americano</h3>
-            <span class="price">130</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/latte.png') }}" alt="Latte">
-            <h3>Latte</h3>
-            <span class="price">145</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/macchiato.png') }}" alt="Macchiato">
-            <h3>Macchiato</h3>
-            <span class="price">150</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/mocha.png') }}" alt="Cappuccino"> 
-            <h3>Cappuccino</h3>
-            <span class="price">150</span>
-          </div>
+    <!-- NON-COFFEE SECTION -->
+    <div class="menu-section">
+      <h3 class="menu-category-label">NON-COFFEE</h3>
+      <div class="menu-display-grid grid-3">
+        <div class="menu-display-item">
+          <img src="{{ url_for('static', filename='images/MENU_MATCHA.png') }}" alt="Matcha">
+        </div>
+        <div class="menu-display-item">
+          <img src="{{ url_for('static', filename='images/MENU_STRAWBERRY.png') }}" alt="Strawberry Iced Tea">
+        </div>
+        <div class="menu-display-item">
+          <img src="{{ url_for('static', filename='images/MENU_COOKIESANDCREAM.png') }}" alt="Cookies and Cream">
         </div>
       </div>
+    </div>
 
-      <div id="non-coffee-section" class="menu-category">
-        <h2>NON-COFFEE</h2>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/matcha.png') }}" alt="Matcha">
-            <h3>Matcha</h3>
-            <span class="price">130</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/cnc.png') }}" alt="Cookies and Cream">
-            <h3>Cookies and Cream</h3>
-            <span class="price">140</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/strawberry.png') }}" alt="Strawberry">
-            <h3>Strawberry</h3>
-            <span class="price">140</span>
-          </div>
-        </div>
-      </div>
-
-      <div id="pastries-section" class="menu-category">
-        <h2>PASTRIES</h2>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/bananabread.jpg') }}" alt="Banana Bread">
-            <h3>Banana Bread</h3>
-            <span class="price">120</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/brownies.jpg') }}" alt="Brownies">
-            <h3>Brownies</h3>
-            <span class="price">90</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/smores.jpg') }}" alt="S'mores">
-            <h3>S'mores</h3>
-            <span class="price">90</span>
-          </div>
-          <div class="menu-item">
-            <img src="{{ url_for('static', filename='images/crinkles.jpg') }}" alt="Crinkles">
-            <h3>Crinkles</h3>
-            <span class="price">80</span>
-          </div>
-        </div>
-      </div>
-
-    </section>
   </main>
 
   <footer>

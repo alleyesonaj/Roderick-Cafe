@@ -7,11 +7,10 @@
 body{
   background:#F3E9DC;
   color:#3E2B25;
-  font-family:'Manrope', sans-serif;
+  font-family:'Manrope', sans-serif; /* edits all text */
   overflow-x:hidden;
 }
 
-/* Make pages use a column flex layout so footer can sit at bottom on short pages */
 html, body {
   height: 100%;
 }
@@ -25,160 +24,72 @@ main{
   flex: 1 0 auto;
 }
 
-
+/* navbar | home, about, menu, order-menu, cart */
 .navbar{
   width:100%;
-  height:190px;
+  height:130px;
   background:#F3E9DC;
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
   align-items:center;
-  padding-top:18px;
+  justify-content:space-between;
+  padding:18px 28px 0;
   position:relative;
 }
 
-.logo{
+/* logo | home, about, menu, order-menu, cart */
+.logo{ /* edits "Roderick Café" */
   font-family:'Chewy', cursive;
   font-weight:400;
-  font-size:55px;
+  font-size:32px;
   color:#6D4A33;
 }
 
+/* nav links | home, about, menu, order-menu, cart */
 .nav-links{
   display:flex;
   gap:80px;
-  margin-top:12px;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
 }
 
-.nav-links a{
+/* nav links anchor | home, about, menu, order-menu, cart */
+.nav-links a{ /* edits "Home" "Menu" "About us" */
   text-decoration:none;
   font-family:'Manrope', sans-serif;
   font-weight:800;
-  font-size:20px;
+  font-size:14px;
   color:#7B5235;
 }
 
-
+/* cart link | home, about, menu, order-menu, cart */
 .cart-link{
   position:absolute;
   right:28px;
-  top:22px;
+  top:50%;
+  transform:translateY(-50%);
   display:inline-block;
 }
 
+/* cart link image | home, about, menu, order-menu, cart */
 .cart-link img{
-  width:80px;
-  height:80px;
+  width:58px;
+  height:58px;
   object-fit:contain;
   cursor:pointer;
 }
 
-
-.hero{
-  position:relative;
-  width:100%;
-  height:610px;
-  overflow:hidden;
-}
-
-.hero-bg{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.hero-content{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  text-align:center;
-  width:100%;
-}
-
-.hero-title-top {
-  font-family: 'Unbounded', sans-serif;
-  font-weight: 700;
-  font-size: 74px;
-  line-height: 90px;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  margin-bottom: -35px;
-  position: relative;
-  z-index: 2; 
-  animation: slideDownFade 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-.coffee-center {
-  width: 250px;
-  margin-top: -10px;
-  margin-bottom: -10px;
-  position: relative;
-  z-index: 3; 
-  animation: fadeIn 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-.hero-title-bottom {
-  font-family: 'Unbounded', sans-serif;
-  font-weight: 700;
-  font-size: 74px;
-  line-height: 82px;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  margin-top: -40px;
-  position: relative;
-  z-index: 2; 
-  animation: slideUpFade 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-@keyframes slideDownFade {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUpFade {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.about-hero{
-  background:#F3E9DC;
-  padding:12px 0 0 0;
-  width:100%;
-  max-width:100%;
-  margin:0;
-}
-
-.about-copy{
+/* about copy | about */
+.about-copy{ /* edits layout alignment */
   max-width:900px;
   margin:0 auto 12px;
   padding:0 20px;
   text-align:left;
 }
 
-.about-title-top{
+/* about title | about */
+.about-title-top{ /* edits "The Baristas" */
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:46px;
@@ -187,7 +98,8 @@ main{
   margin-bottom:10px;
 }
 
-.hero-subtitle{
+/* hero subtitle | about */
+.hero-subtitle{ /* edits "Freshly brewed coffee..." */
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:20px;
@@ -196,12 +108,14 @@ main{
   max-width:720px;
 }
 
+/* parent container | about */
 .your-parent-container-class {
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
+/* about hero background | about */
 .about-hero-bg {
   width: 100%;
   max-width: 900px;
@@ -211,36 +125,40 @@ main{
   margin: 0 auto;
   border-radius: 20px;
   position: relative;
-  z-index: 2; 
+  z-index: 2;
 }
 
+/* beans left decoration | about */
 .beans-left {
   position: absolute;
-  left: -250px;        
-  top: 100px;          
-  width: 800px;        
-  height: 660px;       
-  object-fit: contain; 
-  z-index: 1;               
+  left: -250px;
+  top: 100px;
+  width: 800px;
+  height: 660px;
+  object-fit: contain;
+  z-index: 1;
 }
 
+/* beans right decoration | about */
 .beans-right {
   position: absolute;
-  right: -250px;       
-  top: 120px;          
-  width: 800px;        
-  height: 660px;       
-  object-fit: contain; 
-  z-index: 1;             
+  right: -250px;
+  top: 120px;
+  width: 800px;
+  height: 660px;
+  object-fit: contain;
+  z-index: 1;
 }
 
+/* about disclaimer section | about */
 .about-disclaimer{
   text-align:center;
   margin-top:12px;
   padding-bottom:20px;
 }
 
-.disclaimer-title{
+/* disclaimer title | about */
+.disclaimer-title{ /* edits "DISCLAIMER" */
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:24px;
@@ -248,7 +166,8 @@ main{
   color:#6F4E37;
 }
 
-.disclaimer-text{
+/* disclaimer text | about */
+.disclaimer-text{ /* edits "Hindi kasama sa Menu" */
   font-family:'Unbounded', sans-serif;
   font-weight:800;
   font-size:18px;
@@ -256,7 +175,7 @@ main{
   margin-top:8px;
 }
 
-
+/* button container | home */
 .button-container{
   width:100%;
   display:flex;
@@ -264,26 +183,66 @@ main{
   margin-top:18px;
 }
 
-.order-btn{
-  width:250px;
-  height:60px;
+/* order button | home, order-menu */
+.order-btn{ /* edits "ORDER NOW" */
+  width:180px;
+  height:48px;
   border:none;
   border-radius:20px;
   background:#7B5235;
   color:white;
   font-family:'Manrope', sans-serif;
-  font-weight:800;
-  font-size:28px;
+  font-weight:500;
+  font-size:16px;
   cursor:pointer;
 }
 
+/* home picture | home */
+.home-picture-container{
+  width:100%;
+  margin-top:30px;
+}
 
+.home-picture-container img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
+
+/* home tagline | home */
+.home-tagline{ /* edits tagline text */
+  font-family:'Playfair Display', serif;
+  font-weight:700;
+  font-size:48px;
+  color:#5E3E27;
+  text-align:center;
+  letter-spacing:-0.05em;
+  margin-top:40px;
+  line-height:1.2;
+}
+
+/* home description | home */
+.home-description{
+  font-family:'Manrope', sans-serif;
+  font-weight:700;
+  font-size:16px;
+  color:#434141;
+  text-align:center;
+  max-width:900px;
+  margin:16px auto 0;
+  line-height:1.6;
+  padding:0 20px;
+}
+
+/* footer | all pages */
 footer{
   margin-top:130px;
   background:#FFFFFF;
   padding:32px 40px 18px;
 }
 
+/* footer top | all pages */
 .footer-top{
   display:flex;
   justify-content:space-between;
@@ -291,7 +250,8 @@ footer{
   gap:24px;
 }
 
-.footer-left{
+/* footer left content | all pages */
+.footer-left{ /* edits author names */
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:20px;
@@ -299,7 +259,8 @@ footer{
   line-height:34px;
 }
 
-.footer-right{
+/* footer right content | all pages */
+.footer-right{ /* edits "SPONSORED BY BAKE ME, BEBU" */
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:22px;
@@ -307,6 +268,7 @@ footer{
   margin-top:5px;
 }
 
+/* footer divider line | all pages */
 .footer-line{
   width:100%;
   height:1px;
@@ -314,6 +276,7 @@ footer{
   margin:12px 0 8px;
 }
 
+/* footer bottom section | all pages */
 .footer-bottom{
   display:flex;
   justify-content:space-between;
@@ -322,12 +285,14 @@ footer{
   gap:16px;
 }
 
+/* social icons | all pages */
 .social-icons{
   display:flex;
   align-items:center;
   gap:18px;
 }
 
+/* social icons image | all pages */
 .social-icons img{
   width:38px;
   height:38px;
@@ -335,12 +300,15 @@ footer{
   cursor:pointer;
 }
 
-.copyright{
+/* copyright text | all pages */
+.copyright{ /* edits "© Roderick Café..." */
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:16px;
   color:#3E2B25;
 }
+
+/* menu container | menu */
 .menu-container{
   display:flex;
   max-width:1100px;
@@ -349,6 +317,7 @@ footer{
   gap:40px;
 }
 
+/* menu sidebar | menu */
 .menu-sidebar{
   width:200px;
   position:sticky;
@@ -358,7 +327,8 @@ footer{
   gap:15px;
 }
 
-.category-btn{
+/* category button | menu */
+.category-btn{ /* edits "COFFEE" "NON-COFFEE" "PASTRIES" */
   width:100%;
   height:50px;
   background:#7B5235;
@@ -373,19 +343,23 @@ footer{
   border-radius:15px;
 }
 
+/* category button hover | menu */
 .category-btn:hover{
   background:#6D4A33;
 }
 
+/* menu content | menu */
 .menu-content{
   flex:1;
 }
 
+/* menu category | menu */
 .menu-category{
   margin-bottom:50px;
 }
 
-.menu-category h2{
+/* menu category heading | menu */
+.menu-category h2{ /* edits "COFFEE" "NON-COFFEE" "PASTRIES" */
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:28px;
@@ -393,22 +367,86 @@ footer{
   margin-bottom:20px;
 }
 
+/* menu heading | menu */
+.menu-heading{
+  font-family:'Unbounded', sans-serif;
+  font-weight:700;
+  font-size:36px;
+  color:#6F4E37;
+  text-align:center;
+  margin-top:15px;
+}
+
+/* menu category label | menu */
+.menu-category-label{
+  font-family:'Unbounded', sans-serif;
+  font-weight:700;
+  font-size:24px;
+  color:#5D361A;
+  margin-top:10px;
+  padding-left:0;
+}
+
+/* menu section | menu */
+.menu-section{
+  max-width:900px;
+  margin:30px auto;
+  padding:0 40px;
+}
+
+/* menu display grid | menu */
+.menu-display-grid{
+  display:grid;
+  gap:24px;
+  margin-top:20px;
+}
+
+/* menu display grid 4 columns | menu */
+.grid-4{
+  grid-template-columns:repeat(4, 1fr);
+}
+
+/* menu display grid 3 columns | menu */
+.grid-3{
+  grid-template-columns:repeat(3, 1fr);
+}
+
+/* menu display item | menu */
+.menu-display-item{
+  background:#FFFFFF;
+  border-radius:20px;
+  padding:20px 15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* menu display item image | menu */
+.menu-display-item img{
+  width:200px;
+  height:200px;
+  object-fit:contain;
+}
+
+/* menu grid | menu, order-menu */
 .menu-grid{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
   gap:20px;
 }
 
-.menu-item {
-  background: #FFFFFF;
-  padding: 15px;
-  border-radius: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
+/* menu item card | menu, order-menu */
+.menu-item{
+  background:#FFFFFF;
+  padding:15px;
+  border-radius:20px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
+/* menu item image | menu, order-menu */
 .menu-item img{
   width:100%;
   height:180px;
@@ -417,7 +455,8 @@ footer{
   margin-bottom:10px;
 }
 
-.menu-item h3{
+/* menu item title | menu, order-menu */
+.menu-item h3{ /* edits item names (Americano, Latte, etc.) */
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:18px;
@@ -425,93 +464,100 @@ footer{
   margin-bottom:5px;
 }
 
-.menu-item .price{
+/* menu item price | menu, order-menu */
+.menu-item .price{ /* edits price amounts (130, 145, etc.) */
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:16px;
   color:#7B5235;
 }
 
-.main-content {
-   display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0 80px 0; 
-    width: 100%;
-    background: #F3E9DC;    
+/* main content wrapper | receipt */
+.main-content{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 0 80px 0;
+  width:100%;
+  background:#F3E9DC;
 }
 
-.receipt-wrapper {
-  position: relative;     
-  width: 770px;
-  height: 810px;
-  margin-top: -100px; 
+/* receipt wrapper | receipt */
+.receipt-wrapper{
+  position:relative;
+  width:770px;
+  height:810px;
+  margin-top:-100px;
 }
 
-.receipt-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;              
+/* receipt background image | receipt */
+.receipt-bg{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1;
 }
 
-.receipt-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;            
-  color: #3E2B25;        
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  font-weight: 700;
+/* receipt text content | receipt */
+.receipt-content{ /* edits receipt data */
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:2;
+  color:#3E2B25;
+  font-family:'Courier New', Courier, monospace;
+  font-size:14px;
+  font-weight:700;
 }
 
-.field-order-id, 
-.field-customer, 
-.field-service {
-  position: absolute;
-  left: 190px;
+/* receipt field positions | receipt */
+.field-order-id,
+.field-customer,
+.field-service{
+  position:absolute;
+  left:190px;
 }
 
-.field-order-id { top: 230px; }
-.field-customer { top: 249px; }
-.field-service  { top: 268px; }
+.field-order-id{ top:230px; }
+.field-customer{ top:249px; }
+.field-service{ top:268px; }
 
-.field-dynamic-items-list {
-  position: absolute;
-  left: 312px;
-  top: 432px;
-  width: 325px;
-  height: 165px;
-  overflow-y: auto;
+/* receipt items list | receipt */
+.field-dynamic-items-list{
+  position:absolute;
+  left:312px;
+  top:432px;
+  width:325px;
+  height:165px;
+  overflow-y:auto;
 }
 
-.field-total-cost-amount {
-  position: absolute;
-  right: 135px;
-  top: 622px;
-  width: 140px;
-  text-align: right;
-  font-size: 15px;
+/* receipt total cost | receipt */
+.field-total-cost-amount{
+  position:absolute;
+  right:135px;
+  top:622px;
+  width:140px;
+  text-align:right;
+  font-size:15px;
 }
 
-.field-payment-type-method {
-  position: absolute;
-  right: 135px;
-  top: 658px;
-  width: 140px;
-  text-align: right;
-  font-size: 15px;
+/* receipt payment method | receipt */
+.field-payment-type-method{
+  position:absolute;
+  right:135px;
+  top:658px;
+  width:140px;
+  text-align:right;
+  font-size:15px;
 }
 
---ORDER
-
-
+/* order form box | order */
 .order-form-box{
   background:#FFFFFF;
   border:3px solid #7B5235;
@@ -522,14 +568,16 @@ footer{
   margin:40px auto;
 }
 
-.order-title{
+/* order form title | order */
+.order-title{ /* edits "Welcome to Roderick Café" */
   font-family:'Chewy', cursive;
   font-size:38px;
   color:#6D4A33;
   margin-bottom:5px;
 }
 
-.order-subtitle{
+/* order form subtitle | order */
+.order-subtitle{ /* edits "Please enter your details..." */
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:16px;
@@ -537,12 +585,14 @@ footer{
   margin-bottom:30px;
 }
 
-.form-group{
+/* form group | order */
+.form-group{ /* edits form layout */
   text-align:left;
   margin-bottom:20px;
 }
 
-.form-group label{
+/* form label | order */
+.form-group label{ /* edits "CUSTOMER NAME" "SERVICE TYPE" */
   display:block;
   font-family:'Unbounded', sans-serif;
   font-weight:700;
@@ -551,7 +601,8 @@ footer{
   margin-bottom:8px;
 }
 
-.form-group input[type="text"]{
+/* form text input | order */
+.form-group input[type="text"]{ /* edits customer name input */
   width:100%;
   height:50px;
   border:2px solid #7B5235;
@@ -564,23 +615,27 @@ footer{
   outline:none;
 }
 
+/* service options | order */
 .service-options{
   display:flex;
   gap:15px;
 }
 
+/* option card | order */
 .option-card{
   flex:1;
   position:relative;
   cursor:pointer;
 }
 
+/* option card radio input | order */
 .option-card input[type="radio"]{
   position:absolute;
   opacity:0;
 }
 
-.option-label{
+/* option label | order */
+.option-label{ /* edits "DINE-IN" "TAKE-OUT" */
   display:flex;
   height:50px;
   border:2px solid #7B5235;
@@ -593,12 +648,14 @@ footer{
   color:#7B5235;
 }
 
-.option-card input[type="radio"]:checked + .option-label{
+/* option label checked state | order */
+.option-card input[type="radio"]:checked + .option-label{ /* edits "DINE-IN" "TAKE-OUT" when selected */
   background:#7B5235;
   color:#FFFFFF;
 }
 
-.proceed-btn{
+/* proceed button | order */
+.proceed-btn{ /* edits "PROCEED TO MENU" */
   width:100%;
   height:55px;
   border:none;
@@ -612,51 +669,52 @@ footer{
   margin-top:10px;
 }
 
+/* proceed button hover | order */
 .proceed-btn:hover{
   background:#5A3C28;
 }
 
---order-menu
-
-.order-greeting-banner {
-  font-family: 'Unbounded', sans-serif;
-  font-weight: 700;
-  font-size: 22px;
-  color: #7B5235;
-  margin-bottom: 30px;
-  text-transform: uppercase;
+/* order greeting banner | order-menu */
+.order-greeting-banner{ /* edits greeting message */
+  font-family:'Unbounded', sans-serif;
+  font-weight:700;
+  font-size:22px;
+  color:#7B5235;
+  margin-bottom:30px;
+  text-transform:uppercase;
 }
 
-
-.item-details-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: auto; 
+/* item details row | order-menu */
+.item-details-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  margin-top:auto;
 }
 
-.item-text-left {
-  text-align: left;
+/* item text left | order-menu */
+.item-text-left{ /* edits item names and prices */
+  text-align:left;
 }
 
-
-.add-item-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* add item button | order-menu */
+.add-item-btn{
+  background:none;
+  border:none;
+  padding:0;
+  cursor:pointer;
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.add-item-btn img {
-width: 100% !important;
-height: 100% !important;
-object-fit: contain !important;
-margin-bottom: 0 !important;
-
-} 
+/* add item button image | order-menu */
+.add-item-btn img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  margin-bottom:0 !important;
+}
