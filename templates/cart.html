@@ -23,8 +23,50 @@
     </a>
   </nav>
 
-  <main style="max-width:1100px;margin:40px auto;padding:0 20px;">
-    <h2 style="font-family:'Unbounded', sans-serif;font-size:36px;color:#6F4E37;margin-bottom:12px;">Your Cart</h2>
+  <main style="max-width:1100px; margin:0 auto; padding:20px 40px 60px;">
+
+    <h2 class="cart-title">Your Cart</h2>
+
+    <div class="cart-layout">
+
+      
+      <div class="cart-items" id="cartItems">
+        <p class="cart-empty">No items in cart yet.</p>
+      </div>
+
+      
+      <div class="cart-sidebar">
+
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Total Quantity</span>
+            <span id="totalQty">0</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total">
+            <span>Total Amount</span>
+            <span id="totalAmount">₱0</span>
+          </div>
+        </div>
+
+        <div class="payment-label">Payment Method</div>
+        <div class="payment-options">
+          <button class="payment-btn" id="cashPaymentBtn">
+            <img src="{{ url_for('static', filename='images/cash-payment-button.png') }}" alt="Cash Payment">
+          </button>
+          <button class="payment-btn" id="cardPaymentBtn">
+            <img src="{{ url_for('static', filename='images/card-payment-button.png') }}" alt="Card Payment">
+          </button>
+        </div>
+
+        <a href="{{ url_for('receipt') }}" style="display:block; margin-top:16px;">
+          <button class="payment-btn order-now-btn">
+            <img src="{{ url_for('static', filename='images/order-button.png') }}" alt="Order">
+          </button>
+        </a>
+
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -38,9 +80,7 @@
         SPONSORED BY BAKE ME, BEBU
       </div>
     </div>
-
     <div class="footer-line"></div>
-
     <div class="footer-bottom">
       <div class="social-icons">
         <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook">
@@ -54,6 +94,54 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+
+    const container = document.getElementById('cartItems');
+    const totalQtyEl = document.getElementById('totalQty');
+    const totalAmountEl = document.getElementById('totalAmount');
+
+    const items = Object.entries(cart).filter(([_, v]) => v.qty > 0);
+
+    if (items.length === 0) {
+      container.innerHTML = '<p class="cart-empty">No items in cart yet.</p>';
+    } else {
+      container.innerHTML = '';
+      let totalQty = 0;
+      let totalAmount = 0;
+
+      items.forEach(([name, v]) => {
+        totalQty += v.qty;
+        totalAmount += v.qty * v.price;
+
+        const row = document.createElement('div');
+        row.className = 'cart-row';
+        row.innerHTML = `
+          <div class="cart-row-info">
+            <div class="cart-row-name">${name}</div>
+            <div class="cart-row-meta">
+              <span class="cart-qty">${v.qty}x</span>
+              <span class="cart-price">₱${v.price * v.qty}</span>
+            </div>
+          </div>
+          <textarea class="cart-customize" placeholder="Add customization notes..."></textarea>
+        `;
+        container.appendChild(row);
+      });
+
+      totalQtyEl.textContent = totalQty;
+      totalAmountEl.textContent = '₱' + totalAmount;
+    }
+
+    document.getElementById('cashPaymentBtn').addEventListener('click', function() {
+      // handle cash payment
+    });
+
+    document.getElementById('cardPaymentBtn').addEventListener('click', function() {
+      // handle card payment
+    });
+  </script>
 
 </body>
 </html>

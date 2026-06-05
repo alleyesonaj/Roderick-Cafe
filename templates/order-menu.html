@@ -30,14 +30,13 @@
     <h2 class="menu-heading">Our Signature Menu</h2>
     <div id="orderGreeting" class="order-greeting-banner" style="text-align:center; margin-top:10px;"></div>
 
-    <div id="orderGreeting" class="order-greeting-banner" style="text-align:center; margin-top:10px;"></div>
+    <div class="button-container">
+      <a href="{{ url_for('cart') }}">
+        <button class="order-btn">CHECK PAYMENT</button>
+      </a>
+    </div>
 
-<div class="button-container">
-  <a href="{{ url_for('cart') }}">
-    <button class="order-btn">CHECK PAYMENT</button>
-  </a>
-</div>
-    <!-- COFFEE SECTION -->
+    
     <div class="menu-section">
       <h3 class="menu-category-label">COFFEE</h3>
       <div class="menu-display-grid grid-4">
@@ -105,7 +104,7 @@
       </div>
     </div>
 
-    <!-- NON-COFFEE SECTION -->
+    
     <div class="menu-section">
       <h3 class="menu-category-label">NON-COFFEE</h3>
       <div class="menu-display-grid grid-3">
@@ -133,9 +132,9 @@
               <div class="price">140</div>
             </div>
             <div class="qty-controls">
-              <button class="qty-btn minus-btn" data-item="Cookies and Cream">−</button>
-              <span class="qty-display" id="qty-Cookies and Cream"></span>
-              <button class="qty-btn plus-btn" data-item="Cookies and Cream" data-price="140">+</button>
+              <button class="qty-btn minus-btn" data-item="Cookies-and-Cream">−</button>
+              <span class="qty-display" id="qty-Cookies-and-Cream"></span>
+              <button class="qty-btn plus-btn" data-item="Cookies-and-Cream" data-price="140">+</button>
             </div>
           </div>
         </div>
@@ -158,7 +157,7 @@
       </div>
     </div>
 
-    <!-- PASTRIES SECTION -->
+    
     <div class="menu-section">
       <h3 class="menu-category-label">PASTRIES</h3>
       <div class="menu-display-grid grid-4">
@@ -186,9 +185,9 @@
               <div class="price">120</div>
             </div>
             <div class="qty-controls">
-              <button class="qty-btn minus-btn" data-item="Banana Bread">−</button>
-              <span class="qty-display" id="qty-Banana Bread"></span>
-              <button class="qty-btn plus-btn" data-item="Banana Bread" data-price="120">+</button>
+              <button class="qty-btn minus-btn" data-item="Banana-Bread">−</button>
+              <span class="qty-display" id="qty-Banana-Bread"></span>
+              <button class="qty-btn plus-btn" data-item="Banana-Bread" data-price="120">+</button>
             </div>
           </div>
         </div>
@@ -229,9 +228,9 @@
   </main>
 
   <script>
-    const name = localStorage.getItem('customerName') || 'Guest';
-    const type = localStorage.getItem('serviceType') || 'Dine-in';
-    document.getElementById('orderGreeting').innerText = `Ordering for: ${name} (${type})`;
+    const customerName = localStorage.getItem('customerName') || 'Guest';
+    const serviceType = localStorage.getItem('serviceType') || 'Dine-in';
+    document.getElementById('orderGreeting').innerText = `Ordering for: ${customerName} (${serviceType})`;
 
     const cart = {};
 
@@ -258,6 +257,7 @@
       const span = document.getElementById('qty-' + item);
       const qty = cart[item] ? cart[item].qty : 0;
       span.textContent = qty > 0 ? qty : '';
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
 
     function getCartData() {

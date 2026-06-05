@@ -22,7 +22,7 @@ def cart():
     return render_template('cart.html')
 
 @app.route('/receipt')
-def receipt_page():
+def receipt():
     return render_template('receipt.html')
 
 @app.route('/order')
