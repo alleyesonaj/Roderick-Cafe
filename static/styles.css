@@ -452,6 +452,13 @@ footer{
   object-fit:contain;
 }
 
+/* menu display item details row | order-menu */
+.menu-display-item .item-details-row {
+  width: 100%;
+  margin-top: 12px;
+  padding: 0 5px;
+}
+
 /* menu grid | menu, order-menu */
 .menu-grid{
   display:grid;
@@ -623,6 +630,23 @@ footer{
   font-size:12px;
   color:#3E2B25;
   margin-bottom:8px;
+}
+
+/* form label with icon | order */
+.form-label-with-icon{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+/* form label icon | order */
+.form-label-icon{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+  vertical-align:middle;
+  margin-bottom:7px;
 }
 
 /* form text input | order */
