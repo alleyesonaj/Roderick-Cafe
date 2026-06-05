@@ -28,9 +28,15 @@
 
   <main>
     <h2 class="menu-heading">Our Signature Menu</h2>
+    <div id="orderGreeting" class="order-greeting-banner" style="text-align:center; margin-top:10px;"></div>
 
     <div id="orderGreeting" class="order-greeting-banner" style="text-align:center; margin-top:10px;"></div>
 
+<div class="button-container">
+  <a href="{{ url_for('cart') }}">
+    <button class="order-btn">CHECK PAYMENT</button>
+  </a>
+</div>
     <!-- COFFEE SECTION -->
     <div class="menu-section">
       <h3 class="menu-category-label">COFFEE</h3>
@@ -43,9 +49,11 @@
               <h3>Americano</h3>
               <div class="price">130</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Americano">−</button>
+              <span class="qty-display" id="qty-Americano"></span>
+              <button class="qty-btn plus-btn" data-item="Americano" data-price="130">+</button>
+            </div>
           </div>
         </div>
 
@@ -56,9 +64,11 @@
               <h3>Latte</h3>
               <div class="price">145</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Latte">−</button>
+              <span class="qty-display" id="qty-Latte"></span>
+              <button class="qty-btn plus-btn" data-item="Latte" data-price="145">+</button>
+            </div>
           </div>
         </div>
 
@@ -69,9 +79,11 @@
               <h3>Macchiato</h3>
               <div class="price">150</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Macchiato">−</button>
+              <span class="qty-display" id="qty-Macchiato"></span>
+              <button class="qty-btn plus-btn" data-item="Macchiato" data-price="150">+</button>
+            </div>
           </div>
         </div>
 
@@ -82,9 +94,11 @@
               <h3>Cappuccino</h3>
               <div class="price">150</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Cappuccino">−</button>
+              <span class="qty-display" id="qty-Cappuccino"></span>
+              <button class="qty-btn plus-btn" data-item="Cappuccino" data-price="150">+</button>
+            </div>
           </div>
         </div>
 
@@ -103,9 +117,11 @@
               <h3>Matcha</h3>
               <div class="price">130</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Matcha">−</button>
+              <span class="qty-display" id="qty-Matcha"></span>
+              <button class="qty-btn plus-btn" data-item="Matcha" data-price="130">+</button>
+            </div>
           </div>
         </div>
 
@@ -116,9 +132,11 @@
               <h3>Cookies and Cream</h3>
               <div class="price">140</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Cookies and Cream">−</button>
+              <span class="qty-display" id="qty-Cookies and Cream"></span>
+              <button class="qty-btn plus-btn" data-item="Cookies and Cream" data-price="140">+</button>
+            </div>
           </div>
         </div>
 
@@ -129,9 +147,11 @@
               <h3>Strawberry</h3>
               <div class="price">140</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Strawberry">−</button>
+              <span class="qty-display" id="qty-Strawberry"></span>
+              <button class="qty-btn plus-btn" data-item="Strawberry" data-price="140">+</button>
+            </div>
           </div>
         </div>
 
@@ -150,9 +170,11 @@
               <h3>Brownies</h3>
               <div class="price">90</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Brownies">−</button>
+              <span class="qty-display" id="qty-Brownies"></span>
+              <button class="qty-btn plus-btn" data-item="Brownies" data-price="90">+</button>
+            </div>
           </div>
         </div>
 
@@ -163,9 +185,11 @@
               <h3>Banana Bread</h3>
               <div class="price">120</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Banana Bread">−</button>
+              <span class="qty-display" id="qty-Banana Bread"></span>
+              <button class="qty-btn plus-btn" data-item="Banana Bread" data-price="120">+</button>
+            </div>
           </div>
         </div>
 
@@ -176,9 +200,11 @@
               <h3>S'mores</h3>
               <div class="price">90</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Smores">−</button>
+              <span class="qty-display" id="qty-Smores"></span>
+              <button class="qty-btn plus-btn" data-item="Smores" data-price="90">+</button>
+            </div>
           </div>
         </div>
 
@@ -189,9 +215,11 @@
               <h3>Crinkles</h3>
               <div class="price">80</div>
             </div>
-            <button class="add-item-btn">
-              <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Add">
-            </button>
+            <div class="qty-controls">
+              <button class="qty-btn minus-btn" data-item="Crinkles">−</button>
+              <span class="qty-display" id="qty-Crinkles"></span>
+              <button class="qty-btn plus-btn" data-item="Crinkles" data-price="80">+</button>
+            </div>
           </div>
         </div>
 
@@ -204,6 +232,39 @@
     const name = localStorage.getItem('customerName') || 'Guest';
     const type = localStorage.getItem('serviceType') || 'Dine-in';
     document.getElementById('orderGreeting').innerText = `Ordering for: ${name} (${type})`;
+
+    const cart = {};
+
+    document.querySelectorAll('.plus-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.dataset.item;
+        const price = parseInt(this.dataset.price);
+        if (!cart[item]) cart[item] = { qty: 0, price: price };
+        if (cart[item].qty < 10) cart[item].qty++;
+        updateDisplay(item);
+      });
+    });
+
+    document.querySelectorAll('.minus-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.dataset.item;
+        if (!cart[item] || cart[item].qty === 0) return;
+        cart[item].qty--;
+        updateDisplay(item);
+      });
+    });
+
+    function updateDisplay(item) {
+      const span = document.getElementById('qty-' + item);
+      const qty = cart[item] ? cart[item].qty : 0;
+      span.textContent = qty > 0 ? qty : '';
+    }
+
+    function getCartData() {
+      return Object.entries(cart)
+        .filter(([_, v]) => v.qty > 0)
+        .map(([name, v]) => ({ name, qty: v.qty, price: v.price }));
+    }
   </script>
 
 </body>

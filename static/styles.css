@@ -766,3 +766,43 @@ footer{
   object-fit:contain !important;
   margin-bottom:0 !important;
 }
+
+/* quantity controls | order-menu */
+.qty-controls{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* quantity button | order-menu */
+.qty-btn{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:2px solid #7B5235;
+  background:none;
+  color:#7B5235;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+}
+
+/* quantity button hover | order-menu */
+.qty-btn:hover{
+  background:#7B5235;
+  color:#FFFFFF;
+}
+
+/* quantity display | order-menu */
+.qty-display{
+  font-family:'Unbounded', sans-serif;
+  font-weight:700;
+  font-size:14px;
+  color:#3E2B25;
+  min-width:16px;
+  text-align:center;
+}
