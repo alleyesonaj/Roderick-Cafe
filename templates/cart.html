@@ -29,43 +29,37 @@
 
     <div class="cart-layout">
 
-      
       <div class="cart-items" id="cartItems">
         <p class="cart-empty">No items in cart yet.</p>
       </div>
 
-      
-      <div class="cart-sidebar">
+<div class="cart-sidebar">
 
-        <div class="cart-summary">
-          <div class="summary-row">
-            <span>Total Quantity</span>
-            <span id="totalQty">0</span>
-          </div>
-          <div class="summary-divider"></div>
-          <div class="summary-row summary-total">
-            <span>Total Amount</span>
-            <span id="totalAmount">₱0</span>
-          </div>
-        </div>
+  <div class="cart-summary">
+    <div class="summary-row">
+      <span>Total Quantity</span>
+      <span id="totalQty">0</span>
+    </div>
+    <div class="summary-divider"></div>
+    <div class="summary-row summary-total">
+      <span>Total Amount</span>
+      <span id="totalAmount">₱0</span>
+    </div>
+  </div>
 
-        <div class="payment-label">Payment Method</div>
-        <div class="payment-options">
-          <button class="payment-btn" id="cashPaymentBtn">
-            <img src="{{ url_for('static', filename='images/cash-payment-button.png') }}" alt="Cash Payment">
-          </button>
-          <button class="payment-btn" id="cardPaymentBtn">
-            <img src="{{ url_for('static', filename='images/card-payment-button.png') }}" alt="Card Payment">
-          </button>
-        </div>
+  <div class="payment-options-box">
+    <div class="payment-label"><b>PAYMENT OPTIONS</b></div>
+    <button class="payment-method-btn" id="cashPaymentBtn">CASH</button>
+    <button class="payment-method-btn" id="cardPaymentBtn">CARD</button>
+  </div>
 
-        <a href="{{ url_for('receipt') }}" style="display:block; margin-top:16px;">
-          <button class="payment-btn order-now-btn">
-            <img src="{{ url_for('static', filename='images/order-button.png') }}" alt="Order">
-          </button>
-        </a>
+  <a href="{{ url_for('receipt') }}">
+    <button class="order-now-btn">
+      <img src="{{ url_for('static', filename='images/order-button.png') }}" alt="Order">
+    </button>
+  </a>
 
-      </div>
+</div>
     </div>
   </main>
 
@@ -134,12 +128,12 @@
       totalAmountEl.textContent = '₱' + totalAmount;
     }
 
-    document.getElementById('cashPaymentBtn').addEventListener('click', function() {
-      // handle cash payment
-    });
-
-    document.getElementById('cardPaymentBtn').addEventListener('click', function() {
-      // handle card payment
+    document.querySelectorAll('.payment-method-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.payment-method-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        localStorage.setItem('paymentMethod', this.id === 'cashPaymentBtn' ? 'Cash' : 'Card');
+      });
     });
   </script>
 
