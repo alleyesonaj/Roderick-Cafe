@@ -21,18 +21,58 @@
   <main class="main-content">
     <div class="receipt-wrapper">
       <img class="receipt-bg" src="{{ url_for('static', filename='images/receipt.png') }}" alt="Receipt">
-      
-      <div class="receipt-content">
-        <div class="field-order-id"><span>RECEIPT #:</span></div>
-        <div class="field-customer"><span>CUSTOMER:</span></div>
-        <div class="field-service"><span>SERVICE TYPE:</span></div>
 
-        <div class="field-dynamic-items-list"></div>
-        <div class="field-total-cost-amount"></div>
-        <div class="field-payment-type-method"></div>
+      <div class="receipt-content">
+
+        <!-- Receipt #, Customer, Service Type -->
+        <div class="field-order-id">RECEIPT #: <span id="receiptId"></span></div>
+        <div class="field-customer">CUSTOMER: <span id="receiptCustomer"></span></div>
+        <div class="field-service">SERVICE TYPE: <span id="receiptService"></span></div>
+
+        <!-- Items List -->
+        <div class="field-dynamic-items-list" id="receiptItems"></div>
+
+        <!-- Total Amount -->
+        <div class="field-total-cost-amount" id="receiptTotal"></div>
+
+        <!-- Payment Method -->
+        <div class="field-payment-type-method" id="receiptPayment"></div>
+
       </div>
     </div>
   </main>
+
+  <script>
+    const orderId = localStorage.getItem('orderId') || '--';
+    const customerName = localStorage.getItem('customerName') || '--';
+    const serviceType = localStorage.getItem('serviceType') || '--';
+    const paymentMethod = localStorage.getItem('paymentMethod') || '--';
+    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+
+    document.getElementById('receiptId').textContent = orderId;
+    document.getElementById('receiptCustomer').textContent = customerName;
+    document.getElementById('receiptService').textContent = serviceType;
+    document.getElementById('receiptTotal').textContent = '₱' + localStorage.getItem('totalAmount');
+    document.getElementById('receiptPayment').textContent = paymentMethod;
+
+    const itemsContainer = document.getElementById('receiptItems');
+    const items = Object.entries(cart).filter(([_, v]) => v.qty > 0);
+
+    items.forEach(([name, v]) => {
+      const row = document.createElement('div');
+      row.style.display = 'flex';
+      row.style.justifyContent = 'space-between';
+      row.style.marginBottom = '4px';
+      row.style.fontWeight = 'bold';
+      row.style.fontSize = '12px';
+      const customization = v.customization ? ` (${v.customization})` : '';
+      row.innerHTML = `
+        <span>${v.qty}x ${name}${customization}</span>
+        <span>₱${v.qty * v.price}</span>
+      `;
+      itemsContainer.appendChild(row);
+    });
+  </script>
 
 </body>
 </html>

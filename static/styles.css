@@ -548,45 +548,45 @@ footer{
 }
 
 /* receipt field positions | receipt */
+/* receipt field positions | receipt */
 .field-order-id,
 .field-customer,
 .field-service{
   position:absolute;
-  left:190px;
+  left:200px;
 }
 
-.field-order-id{ top:230px; }
-.field-customer{ top:249px; }
-.field-service{ top:268px; }
+.field-order-id{ top:228px; }
+.field-customer{ top:244px; }
+.field-service{ top:260px; }
 
 /* receipt items list | receipt */
 .field-dynamic-items-list{
   position:absolute;
-  left:312px;
-  top:432px;
-  width:325px;
-  height:165px;
+  left:200px;
+  top:340px;
+  width:340px;
+  height:180px;
   overflow-y:auto;
+  font-size:13px;
 }
 
 /* receipt total cost | receipt */
 .field-total-cost-amount{
   position:absolute;
-  right:135px;
-  top:622px;
-  width:140px;
-  text-align:right;
-  font-size:15px;
+  right:225px;
+  top:590px;
+  font-size:14px;
+  font-weight:700;
 }
 
 /* receipt payment method | receipt */
 .field-payment-type-method{
   position:absolute;
-  right:135px;
-  top:658px;
-  width:140px;
-  text-align:right;
-  font-size:15px;
+  right:225px;
+  top:635px;
+  font-size:14px;
+  font-weight:700;
 }
 
 /* order form box | order */
