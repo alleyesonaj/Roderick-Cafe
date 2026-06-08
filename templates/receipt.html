@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Receipt | Roderick Café</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" style="text-decoration:none;">
+      <h1 class="logo">Roderick Café</h1>
+    </a>
+  </nav>
+
+  <main class="main-content">
+    <div class="receipt-wrapper">
+      <img class="receipt-bg" src="{{ url_for('static', filename='images/receipt.png') }}" alt="Receipt">
+
+      <div class="receipt-content">
+        <div class="field-order-id">RECEIPT #: <span id="receiptId"></span></div>
+        <div class="field-customer">CUSTOMER: <span id="receiptCustomer"></span></div>
+        <div class="field-service">SERVICE TYPE: <span id="receiptService"></span></div>
+
+        <div class="field-dynamic-items-list" id="receiptItems"></div>
+
+        <div class="field-total-cost-amount" id="receiptTotal"></div>
+        <div class="field-payment-type-method" id="receiptPayment"></div>
+      </div>
+    </div>
+
+    <div class="receipt-actions">
+      <button class="new-order-btn" id="newOrderBtn">NEW ORDER</button>
+      <p class="countdown-text">Redirecting in <span id="countdownNum">15</span> seconds...</p>
+    </div>
+  </main>
+
+  <script>
+    const orderId = localStorage.getItem('orderId') || '--';
+    const customerName = localStorage.getItem('customerName') || '--';
+    const serviceType = localStorage.getItem('serviceType') || '--';
+    const paymentMethod = localStorage.getItem('paymentMethod') || '--';
+    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+
+    document.getElementById('receiptId').textContent = orderId;
+    document.getElementById('receiptCustomer').textContent = customerName;
+    document.getElementById('receiptService').textContent = serviceType;
+    document.getElementById('receiptTotal').textContent = '₱' + localStorage.getItem('totalAmount');
+    document.getElementById('receiptPayment').textContent = paymentMethod;
+
+    const itemsContainer = document.getElementById('receiptItems');
+    const items = Object.entries(cart).filter(([_, v]) => v.qty > 0);
+
+    items.forEach(([name, v]) => {
+      const row = document.createElement('div');
+      row.style.display = 'flex';
+      row.style.justifyContent = 'space-between';
+      row.style.marginBottom = '4px';
+      row.style.fontWeight = 'bold';
+      row.style.fontSize = '12px';
+      const customization = v.customization ? ` (${v.customization})` : '';
+      row.innerHTML = `
+        <span>${v.qty}x ${name}${customization}</span>
+        <span>₱${v.qty * v.price}</span>
+      `;
+      itemsContainer.appendChild(row);
+    });
+
+    function clearAndRedirect() {
+      localStorage.removeItem('customerName');
+      localStorage.removeItem('serviceType');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('paymentMethod');
+      localStorage.removeItem('orderId');
+      localStorage.removeItem('totalAmount');
+      window.location.href = '/order';
+    }
+
+    document.getElementById('newOrderBtn').addEventListener('click', clearAndRedirect);
+
+    let seconds = 15;
+    const countdownEl = document.getElementById('countdownNum');
+
+    const timer = setInterval(function () {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        clearAndRedirect();
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>

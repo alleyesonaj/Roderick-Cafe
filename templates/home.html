@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roderick Café</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Playfair+Display:wght@700&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+  <nav class="navbar">
+
+    <a href="/" style="text-decoration:none;">
+  <h1 class="logo">Roderick Café</h1>
+</a>
+
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/menu">Menu</a>
+      <a href="/about">About us</a>
+    </div>
+
+    <a href="{{ url_for('cart') }}" class="cart-link">
+      <img src="{{ url_for('static', filename='images/cart-button.png') }}" alt="Cart">
+    </a>
+
+  </nav>
+
+  
+
+<p class="home-tagline">Your Favorite Cravings Delivered<br>Straight to your Screen</p>
+
+<p class="home-description">The ultimate cafe experience is now at your fingertips. Whether you're working hard<br> or taking a well-deserved break, our app makes getting premium brews and treats<br> effortless. Just customize your drink, add to cart, and we'll handle the rest!</p>
+
+<div class="button-container">
+  <a href="{{ url_for('order') }}">
+    <button class="order-btn">
+      ORDER NOW
+    </button>
+  </a>
+</div>
+
+<div class="home-picture-container">
+  <img src="{{ url_for('static', filename='images/home-picture.png') }}" alt="Home Picture">
+</div>
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-left">
+        Aviles, Armi Jhon A.<br>
+        Igloso, Mark Jacob S.<br>
+        Orfella Jr, Roderick Roxas
+      </div>
+
+      <div class="footer-right">
+        SPONSORED BY BAKE ME, BEBU
+      </div>
+
+    </div>
+
+    <div class="footer-line"></div>
+
+    <div class="footer-bottom">
+
+      <div class="social-icons">
+        <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook">
+        <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram">
+        <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="TikTok">
+        <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter">
+        <img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="LinkedIn">
+      </div>
+
+      <div class="copyright">
+        © Roderick Café Ordering System. All rights reserved.
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
