@@ -7,13 +7,14 @@
 body{
   background:#F3E9DC;
   color:#3E2B25;
-  font-family:'Manrope', sans-serif; /* edits all text */
+  font-family:'Manrope', sans-serif;
   overflow-x:hidden;
 }
 
 html, body {
   height: 100%;
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -51,7 +52,7 @@ main{
 }
 
 /* logo | home, about, menu, order-menu, cart */
-.logo{ /* edits "Roderick Café" */
+.logo{
   font-family:'Chewy', cursive;
   font-weight:400;
   font-size:32px;
@@ -68,7 +69,7 @@ main{
 }
 
 /* nav links anchor | home, about, menu, order-menu, cart */
-.nav-links a{ /* edits "Home" "Menu" "About us" */
+.nav-links a{
   text-decoration:none;
   font-family:'Manrope', sans-serif;
   font-weight:800;
@@ -103,7 +104,7 @@ main{
 }
 
 /* about copy | about */
-.about-copy{ /* edits layout alignment */
+.about-copy{
   max-width:900px;
   margin:0 auto 12px;
   padding:0 20px;
@@ -111,7 +112,7 @@ main{
 }
 
 /* about title | about */
-.about-title-top{ /* edits "The Baristas" */
+.about-title-top{
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:46px;
@@ -121,7 +122,7 @@ main{
 }
 
 /* hero subtitle | about */
-.hero-subtitle{ /* edits "Freshly brewed coffee..." */
+.hero-subtitle{
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:20px;
@@ -180,7 +181,7 @@ main{
 }
 
 /* disclaimer title | about */
-.disclaimer-title{ /* edits "DISCLAIMER" */
+.disclaimer-title{
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:24px;
@@ -189,7 +190,7 @@ main{
 }
 
 /* disclaimer text | about */
-.disclaimer-text{ /* edits "Hindi kasama sa Menu" */
+.disclaimer-text{
   font-family:'Unbounded', sans-serif;
   font-weight:800;
   font-size:18px;
@@ -206,7 +207,7 @@ main{
 }
 
 /* order button | home, order-menu */
-.order-btn{ /* edits "ORDER NOW" */
+.order-btn{
   width:180px;
   height:48px;
   border:none;
@@ -233,7 +234,7 @@ main{
 }
 
 /* home tagline | home */
-.home-tagline{ /* edits tagline text */
+.home-tagline{
   font-family:'Playfair Display', serif;
   font-weight:700;
   font-size:48px;
@@ -273,7 +274,7 @@ footer{
 }
 
 /* footer left content | all pages */
-.footer-left{ /* edits author names */
+.footer-left{
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:20px;
@@ -282,7 +283,7 @@ footer{
 }
 
 /* footer right content | all pages */
-.footer-right{ /* edits "SPONSORED BY BAKE ME, BEBU" */
+.footer-right{
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:22px;
@@ -323,7 +324,7 @@ footer{
 }
 
 /* copyright text | all pages */
-.copyright{ /* edits "© Roderick Café..." */
+.copyright{
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:16px;
@@ -350,7 +351,7 @@ footer{
 }
 
 /* category button | menu */
-.category-btn{ /* edits "COFFEE" "NON-COFFEE" "PASTRIES" */
+.category-btn{
   width:100%;
   height:50px;
   background:#7B5235;
@@ -381,7 +382,7 @@ footer{
 }
 
 /* menu category heading | menu */
-.menu-category h2{ /* edits "COFFEE" "NON-COFFEE" "PASTRIES" */
+.menu-category h2{
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:28px;
@@ -407,7 +408,7 @@ footer{
   color:#5D361A;
   margin-top:10px;
   padding-left:0;
-  margin-left:60px;   /* counteract the section shift */
+  margin-left:60px;
 }
 
 /* menu section | menu */
@@ -447,16 +448,16 @@ footer{
 
 /* menu display item image | menu */
 .menu-display-item img{
-  width:270px;
-  height:270px;
+  width:275px;
+  height:275px;
   object-fit:contain;
 }
 
 /* menu display item details row | order-menu */
-.menu-display-item .item-details-row {
-  width: 100%;
-  margin-top: 12px;
-  padding: 0 5px;
+.menu-display-item .item-details-row{
+  width:100%;
+  margin-top:12px;
+  padding:0 5px;
 }
 
 /* menu grid | menu, order-menu */
@@ -487,7 +488,7 @@ footer{
 }
 
 /* menu item title | menu, order-menu */
-.menu-item h3{ /* edits item names (Americano, Latte, etc.) */
+.menu-item h3{
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:18px;
@@ -496,7 +497,7 @@ footer{
 }
 
 /* menu item price | menu, order-menu */
-.menu-item .price{ /* edits price amounts (130, 145, etc.) */
+.menu-item .price{
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:16px;
@@ -533,7 +534,7 @@ footer{
 }
 
 /* receipt text content | receipt */
-.receipt-content{ /* edits receipt data */
+.receipt-content{
   position:absolute;
   top:0;
   left:0;
@@ -547,45 +548,45 @@ footer{
 }
 
 /* receipt field positions | receipt */
+/* receipt field positions | receipt */
 .field-order-id,
 .field-customer,
 .field-service{
   position:absolute;
-  left:190px;
+  left:200px;
 }
 
-.field-order-id{ top:230px; }
-.field-customer{ top:249px; }
-.field-service{ top:268px; }
+.field-order-id{ top:228px; }
+.field-customer{ top:244px; }
+.field-service{ top:260px; }
 
 /* receipt items list | receipt */
 .field-dynamic-items-list{
   position:absolute;
-  left:312px;
-  top:432px;
-  width:325px;
-  height:165px;
+  left:200px;
+  top:340px;
+  width:340px;
+  height:180px;
   overflow-y:auto;
+  font-size:13px;
 }
 
 /* receipt total cost | receipt */
 .field-total-cost-amount{
   position:absolute;
-  right:135px;
-  top:622px;
-  width:140px;
-  text-align:right;
-  font-size:15px;
+  right:225px;
+  top:590px;
+  font-size:14px;
+  font-weight:700;
 }
 
 /* receipt payment method | receipt */
 .field-payment-type-method{
   position:absolute;
-  right:135px;
-  top:658px;
-  width:140px;
-  text-align:right;
-  font-size:15px;
+  right:225px;
+  top:635px;
+  font-size:14px;
+  font-weight:700;
 }
 
 /* order form box | order */
@@ -600,7 +601,7 @@ footer{
 }
 
 /* order form title | order */
-.order-title{ /* edits "Welcome to Roderick Café" */
+.order-title{
   font-family:'Chewy', cursive;
   font-size:38px;
   color:#6D4A33;
@@ -608,7 +609,7 @@ footer{
 }
 
 /* order form subtitle | order */
-.order-subtitle{ /* edits "Please enter your details..." */
+.order-subtitle{
   font-family:'Manrope', sans-serif;
   font-weight:800;
   font-size:16px;
@@ -617,13 +618,13 @@ footer{
 }
 
 /* form group | order */
-.form-group{ /* edits form layout */
+.form-group{
   text-align:left;
   margin-bottom:20px;
 }
 
 /* form label | order */
-.form-group label{ /* edits "CUSTOMER NAME" "SERVICE TYPE" */
+.form-group label{
   display:block;
   font-family:'Unbounded', sans-serif;
   font-weight:700;
@@ -642,15 +643,15 @@ footer{
 
 /* form label icon | order */
 .form-label-icon{
-  width:20px;
-  height:20px;
+  width:14px;
+  height:14px;
   object-fit:contain;
   vertical-align:middle;
-  margin-bottom:7px;
+  margin-bottom:2px;
 }
 
 /* form text input | order */
-.form-group input[type="text"]{ /* edits customer name input */
+.form-group input[type="text"]{
   width:100%;
   height:50px;
   border:2px solid #7B5235;
@@ -683,7 +684,7 @@ footer{
 }
 
 /* option label | order */
-.option-label{ /* edits "DINE-IN" "TAKE-OUT" */
+.option-label{
   display:flex;
   height:50px;
   border:2px solid #7B5235;
@@ -697,13 +698,13 @@ footer{
 }
 
 /* option label checked state | order */
-.option-card input[type="radio"]:checked + .option-label{ /* edits "DINE-IN" "TAKE-OUT" when selected */
+.option-card input[type="radio"]:checked + .option-label{
   background:#7B5235;
   color:#FFFFFF;
 }
 
 /* proceed button | order */
-.proceed-btn{ /* edits "PROCEED TO MENU" */
+.proceed-btn{
   width:100%;
   height:55px;
   border:none;
@@ -723,7 +724,7 @@ footer{
 }
 
 /* order greeting banner | order-menu */
-.order-greeting-banner{ /* edits greeting message */
+.order-greeting-banner{
   font-family:'Unbounded', sans-serif;
   font-weight:700;
   font-size:22px;
@@ -742,7 +743,7 @@ footer{
 }
 
 /* item text left | order-menu */
-.item-text-left{ /* edits item names and prices */
+.item-text-left{
   text-align:left;
 }
 
@@ -807,59 +808,6 @@ footer{
   text-align:center;
 }
 
-/* cart layout | cart */
-.cart-layout{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:40px;
-}
-
-/* cart items | cart */
-.cart-items{
-  flex:1;
-}
-
-/* cart sidebar | cart */
-.cart-sidebar{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  padding-top:60px;
-  margin-right:40px;
-}
-
-/* payment button | cart */
-.payment-btn{
-  background:none;
-  border:none;
-  padding:0;
-  cursor:pointer;
-  display:block;
-}
-
-/* payment button image | cart */
-.payment-btn img{
-  width:180px;
-  height:auto;
-  object-fit:contain;
-  display:block;
-}
-
-/* payment button hover | cart */
-.payment-btn:hover{
-  opacity:0.85;
-}
-
-/* order button image | cart */
-#orderBtn img,
-.cart-sidebar a .payment-btn img{
-  width:240px;
-  height:auto;
-  object-fit:contain;
-  display:block;
-}
-
 /* cart title | cart */
 .cart-title{
   font-family:'Unbounded', sans-serif;
@@ -871,7 +819,7 @@ footer{
 /* cart layout | cart */
 .cart-layout{
   display:flex;
-  gap:40px;
+  gap:120px;
   align-items:flex-start;
 }
 
@@ -943,7 +891,7 @@ footer{
 /* cart customize | cart */
 .cart-customize{
   flex:1;
-  height:60px;
+  height:80px;
   border:2px solid #7B5235;
   border-radius:12px;
   padding:10px 14px;
@@ -954,6 +902,7 @@ footer{
   resize:none;
   outline:none;
   background:#F3E9DC;
+  min-width:300px;
 }
 
 /* cart summary | cart */
@@ -962,7 +911,7 @@ footer{
   border-radius:16px;
   padding:20px;
   margin-bottom:20px;
-  width:220px;
+  width:280px;
 }
 
 /* summary row | cart */
@@ -992,23 +941,8 @@ footer{
   color:#6F4E37;
 }
 
-/* payment label | cart */
-.payment-label{
-  font-family:'Unbounded', sans-serif;
-  font-weight:700;
-  font-size:13px;
-  color:#7B5235;
-  margin-bottom:10px;
-}
-
-/* payment options | cart */
-.payment-options{
-  display:flex;
-  gap:12px;
-}
-
-/* payment button | cart */
-.payment-btn{
+/* order now button image | cart */
+.order-now-btn{
   background:none;
   border:none;
   padding:0;
@@ -1016,21 +950,61 @@ footer{
   display:block;
 }
 
-/* payment button image | cart */
-.payment-btn img{
-  width:100px;
-  height:auto;
-  object-fit:contain;
-  display:block;
-}
-
-/* payment button hover | cart */
-.payment-btn:hover{
-  opacity:0.85;
-}
-
 /* order now button image | cart */
 .order-now-btn img{
-  width:220px;
+  width:300px;
   height:auto;
+}
+
+/* cart sidebar | cart */
+.cart-sidebar{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  padding-top:0;
+  margin-left:auto;
+  min-width:260px;
+  margin-right:80px;
+  
+}
+
+/* payment method button | cart */
+.payment-method-btn{
+  width:100%;
+  height:50px;
+  border:2px solid #7B5235;
+  border-radius:15px;
+  background:none;
+  color:#7B5235;
+  font-family:'Unbounded', sans-serif;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
+}
+
+/* payment method button hover | cart */
+.payment-method-btn:hover{
+  background:#7B5235;
+  color:#FFFFFF;
+}
+
+/* payment method button active | cart */
+.payment-method-btn.selected{
+  background:#7B5235;
+  color:#FFFFFF;
+}
+
+/* payment options box | cart */
+.payment-options-box{
+  background:#FFFFFF;
+  border-radius:16px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  width:280px;
+}
+.cart-sidebar a{
+  text-decoration:none;
+  display:block;
 }
