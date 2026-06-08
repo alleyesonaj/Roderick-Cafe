@@ -33,32 +33,32 @@
         <p class="cart-empty">No items in cart yet.</p>
       </div>
 
-<div class="cart-sidebar">
+      <div class="cart-sidebar">
 
-  <div class="cart-summary">
-    <div class="summary-row">
-      <span>Total Quantity</span>
-      <span id="totalQty">0</span>
-    </div>
-    <div class="summary-divider"></div>
-    <div class="summary-row summary-total">
-      <span>Total Amount</span>
-      <span id="totalAmount">₱0</span>
-    </div>
-  </div>
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Total Quantity</span>
+            <span id="totalQty">0</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total">
+            <span>Total Amount</span>
+            <span id="totalAmount">₱0</span>
+          </div>
+        </div>
 
-  <div class="payment-options-box">
-    <div class="payment-label"><b>PAYMENT OPTIONS</b></div>
-    <button class="payment-method-btn" id="cashPaymentBtn">CASH</button>
-    <button class="payment-method-btn" id="cardPaymentBtn">CARD</button>
-  </div>
+        <div class="payment-options-box">
+          <div class="payment-label"><b>PAYMENT OPTIONS</b></div>
+          <button class="payment-method-btn" id="cashPaymentBtn">CASH</button>
+          <button class="payment-method-btn" id="cardPaymentBtn">CARD</button>
+        </div>
 
-<button class="order-now-btn" id="placeOrderBtn">
-  <img src="{{ url_for('static', filename='images/order-button.png') }}" alt="Order">
-</button>
-  </a>
+        <button class="order-now-btn" id="placeOrderBtn">
+          <img src="{{ url_for('static', filename='images/order-button.png') }}" alt="Order">
+        </button>
 
-</div>
+      </div>
+
     </div>
   </main>
 
@@ -157,7 +157,7 @@
       };
     });
 
-localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
 
     const totalAmount = cartItems.reduce((sum, item) => sum + item.qty * item.price, 0);
 
@@ -174,21 +174,21 @@ localStorage.setItem('cart', JSON.stringify(cart));
     })
     .then(res => res.json())
     .then(data => {
-  if (data.status === 'success') {
-    const totalAmount = cartItems.reduce((sum, item) => sum + item.qty * item.price, 0);
-    localStorage.setItem('orderId', data.order_id);
-    localStorage.setItem('totalAmount', totalAmount);
-    window.location.href = '/receipt';
-  } else {
-    alert('Order failed: ' + data.message);
-  }
-})
+      if (data.status === 'success') {
+        const totalAmount = cartItems.reduce((sum, item) => sum + item.qty * item.price, 0);
+        localStorage.setItem('orderId', data.order_id);
+        localStorage.setItem('totalAmount', totalAmount);
+        window.location.href = '/receipt';
+      } else {
+        alert('Order failed: ' + data.message);
+      }
+    })
     .catch(err => {
       alert('Something went wrong. Please try again.');
       console.error(err);
     });
   });
-</script>
+  </script>
 
 </body>
 </html>
