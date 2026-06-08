@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2026 at 03:56 PM
+-- Generation Time: Jun 08, 2026 at 11:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,10 @@ CREATE TABLE `customers` (
 INSERT INTO `customers` (`customer_id`, `customerName`) VALUES
 (1, 'AJ'),
 (2, 'MJ'),
-(3, 'Rod');
+(3, 'Rod'),
+(4, 'ro is de'),
+(5, 'RODE'),
+(6, 'aj igloso');
 
 -- --------------------------------------------------------
 
@@ -92,7 +95,10 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_id`, `customer_id`, `serviceType`, `paymentOption`, `totalAmount`) VALUES
 (1, 1, 'Dine-in', 'Card', 415.00),
 (2, 2, 'Take-out', 'Cash', 1645.00),
-(3, 3, 'Dine-in', 'Cash', 1365.00);
+(3, 3, 'Dine-in', 'Cash', 1365.00),
+(4, 4, 'Dine-in', 'Cash', 580.00),
+(5, 5, 'Dine-in', 'Card', 425.00),
+(6, 6, 'Take-out', 'Cash', 290.00);
 
 -- --------------------------------------------------------
 
@@ -127,7 +133,13 @@ INSERT INTO `order_details` (`detail_id`, `order_id`, `item_id`, `quantity`, `cu
 (12, 3, 7, 1, ''),
 (13, 3, 6, 2, ''),
 (14, 3, 5, 1, ''),
-(15, 3, 8, 1, '');
+(15, 3, 8, 1, ''),
+(16, 4, 2, 4, ''),
+(17, 5, 1, 1, ''),
+(18, 5, 2, 1, ''),
+(19, 5, 3, 1, ''),
+(20, 6, 7, 1, ''),
+(21, 6, 4, 1, '');
 
 --
 -- Indexes for dumped tables
@@ -168,7 +180,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `menu_items`
@@ -180,13 +192,13 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

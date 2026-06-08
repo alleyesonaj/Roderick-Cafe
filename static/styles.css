@@ -1008,3 +1008,39 @@ footer{
   text-decoration:none;
   display:block;
 }
+
+ .receipt-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .new-order-btn {
+      background-color: #4a2c0a;
+      color: #fff;
+      border: none;
+      padding: 14px 40px;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+
+    .new-order-btn:hover {
+      background-color: #6b3f12;
+    }
+
+    .countdown-text {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .countdown-text span {
+      font-weight: 800;
+      color: #4a2c0a;
+    }
