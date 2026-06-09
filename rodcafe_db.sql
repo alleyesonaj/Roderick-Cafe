@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2026 at 11:00 AM
+-- Generation Time: Jun 09, 2026 at 09:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,10 +39,7 @@ CREATE TABLE `customers` (
 INSERT INTO `customers` (`customer_id`, `customerName`) VALUES
 (1, 'AJ'),
 (2, 'MJ'),
-(3, 'Rod'),
-(4, 'ro is de'),
-(5, 'RODE'),
-(6, 'aj igloso');
+(3, 'Rod');
 
 -- --------------------------------------------------------
 
@@ -62,17 +59,17 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`item_id`, `itemName`, `category`, `price`) VALUES
-(1, 'Americano', 'Coffee', 130.00),
-(2, 'Latte', 'Coffee', 145.00),
-(3, 'Macchiato', 'Coffee', 150.00),
-(4, 'Cappuccino', 'Coffee', 150.00),
-(5, 'Matcha', 'Non-Coffee', 130.00),
-(6, 'Cookies-and-Cream', 'Non-Coffee', 140.00),
-(7, 'Strawberry', 'Non-Coffee', 140.00),
-(8, 'Brownies', 'Pastries', 90.00),
-(9, 'Banana-Bread', 'Pastries', 120.00),
-(10, 'Smores', 'Pastries', 90.00),
-(11, 'Crinkles', 'Pastries', 80.00);
+(100, 'Americano', 'Coffee', 130.00),
+(101, 'Latte', 'Coffee', 145.00),
+(102, 'Macchiato', 'Coffee', 150.00),
+(103, 'Cappuccino', 'Coffee', 150.00),
+(104, 'Matcha', 'Non-Coffee', 130.00),
+(105, 'Cookies-and-Cream', 'Non-Coffee', 140.00),
+(106, 'Strawberry', 'Non-Coffee', 140.00),
+(107, 'Brownies', 'Pastries', 90.00),
+(108, 'Banana-Bread', 'Pastries', 120.00),
+(109, 'Smores', 'Pastries', 90.00),
+(110, 'Crinkles', 'Pastries', 80.00);
 
 -- --------------------------------------------------------
 
@@ -93,12 +90,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `customer_id`, `serviceType`, `paymentOption`, `totalAmount`) VALUES
-(1, 1, 'Dine-in', 'Card', 415.00),
-(2, 2, 'Take-out', 'Cash', 1645.00),
-(3, 3, 'Dine-in', 'Cash', 1365.00),
-(4, 4, 'Dine-in', 'Cash', 580.00),
-(5, 5, 'Dine-in', 'Card', 425.00),
-(6, 6, 'Take-out', 'Cash', 290.00);
+(5000, 1, 'Take-out', 'Card', 400.00),
+(5001, 2, 'Dine-in', 'Cash', 555.00),
+(5002, 3, 'Dine-in', 'Cash', 575.00);
 
 -- --------------------------------------------------------
 
@@ -119,27 +113,16 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`detail_id`, `order_id`, `item_id`, `quantity`, `customization`) VALUES
-(1, 1, 2, 1, 'extra shots'),
-(2, 1, 3, 1, ''),
-(3, 1, 9, 1, ''),
-(4, 2, 2, 5, 'Oatside milk'),
-(5, 2, 3, 2, 'Extra Caramel'),
-(6, 2, 7, 1, ''),
-(7, 2, 9, 4, ''),
-(8, 3, 1, 1, 'extra extra shots of espresso'),
-(9, 3, 2, 1, ''),
-(10, 3, 3, 2, ''),
-(11, 3, 4, 1, ''),
-(12, 3, 7, 1, ''),
-(13, 3, 6, 2, ''),
-(14, 3, 5, 1, ''),
-(15, 3, 8, 1, ''),
-(16, 4, 2, 4, ''),
-(17, 5, 1, 1, ''),
-(18, 5, 2, 1, ''),
-(19, 5, 3, 1, ''),
-(20, 6, 7, 1, ''),
-(21, 6, 4, 1, '');
+(9000, 5000, 100, 1, 'extra shots'),
+(9001, 5000, 102, 1, ''),
+(9002, 5000, 108, 1, ''),
+(9003, 5001, 101, 1, 'Oatside milk\n\n'),
+(9004, 5001, 102, 1, 'Extra Caramel'),
+(9005, 5001, 106, 1, ''),
+(9006, 5001, 108, 1, ''),
+(9007, 5002, 100, 1, 'extra extra shots of espresso'),
+(9008, 5002, 101, 1, ''),
+(9009, 5002, 102, 2, '');
 
 --
 -- Indexes for dumped tables
@@ -180,25 +163,25 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5003;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9010;
 
 --
 -- Constraints for dumped tables
