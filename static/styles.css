@@ -51,6 +51,11 @@ main{
   border-radius:999px;
 }
 
+/* admin login navbar | admin-login */
+.navbar--login::after{
+  display:none;
+}
+
 /* logo | home, about, menu, order-menu, cart */
 .logo{
   font-family:'Chewy', cursive;
@@ -658,7 +663,8 @@ footer{
 }
 
 /* form text input | order */
-.form-group input[type="text"]{
+.form-group input[type="text"],
+.form-group input[type="password"]{
   width:100%;
   height:50px;
   border:2px solid #7B5235;
