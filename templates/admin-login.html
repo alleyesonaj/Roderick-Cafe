@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | Roderick Café</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" style="text-decoration:none;">
+      <h1 class="logo">Roderick Café</h1>
+    </a>
+  </nav>
+
+  <main>
+    <div class="order-form-box">
+      <h2 class="order-title">Admin Login</h2>
+      <p class="order-subtitle">Enter your credentials to access the admin panel</p>
+
+      {% if error %}
+        <p style="
+          font-family: 'Unbounded', sans-serif;
+          font-size: 12px;
+          color: #C0392B;
+          font-weight: 700;
+          text-align: center;
+          margin-bottom: 16px;
+        ">{{ error }}</p>
+      {% endif %}
+
+      <form method="POST" action="{{ url_for('admin_login') }}">
+
+        <div class="form-group">
+          <label class="form-label-with-icon">
+            USERNAME
+          </label>
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter admin username"
+            autocomplete="off"
+            value="{{ request.form.get('username', '') }}"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label-with-icon">
+            PASSWORD
+          </label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter admin password"
+            autocomplete="off"
+          >
+        </div>
+
+        <button type="submit" class="proceed-btn">LOGIN</button>
+
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-left">
+        Aviles, Armi Jhon A.<br>
+        Igloso, Mark Jacob S.<br>
+        Orfella Jr, Roderick Roxas
+      </div>
+      <div class="footer-right">
+        SPONSORED BY BAKE ME, BEBU
+      </div>
+    </div>
+    <div class="footer-line"></div>
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook">
+        <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram">
+        <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="TikTok">
+        <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter">
+        <img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="LinkedIn">
+      </div>
+      <div class="copyright">
+        © Roderick Café Ordering System. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

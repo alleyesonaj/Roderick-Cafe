@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2026 at 05:01 AM
+-- Generation Time: Jun 10, 2026 at 05:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `rodcafe_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password_hash` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `username`, `password_hash`) VALUES
+(3, 'admin', '32768:8:1$rVOOzf9TkW5IqNRI$f331a4d6e6773740a6eeafba450a285818de721c0a1cec312548f7e54927410355d2688211ccd2100d76a4877778075abce2adf131aa74ff1b01391cb6d3b28e');
 
 -- --------------------------------------------------------
 
@@ -133,6 +152,13 @@ INSERT INTO `order_details` (`detail_id`, `order_id`, `item_id`, `quantity`, `cu
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `unique_username` (`username`);
+
+--
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
@@ -162,6 +188,12 @@ ALTER TABLE `order_details`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customers`
