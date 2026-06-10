@@ -86,16 +86,23 @@ main{
   display:block;
 }
 
-/* cart link | home, about, menu, order-menu, cart */
-.cart-link{
+/* navbar right | all pages */
+.navbar-right{
   position:absolute;
   right:28px;
   top:50%;
   transform:translateY(-50%);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* cart link | all pages */
+.cart-link{
   display:inline-block;
 }
 
-/* cart link image | home, about, menu, order-menu, cart */
+/* cart link image | all pages */
 .cart-link img{
   width:58px;
   height:58px;
