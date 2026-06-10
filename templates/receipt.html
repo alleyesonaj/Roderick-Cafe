@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 
@@ -41,35 +41,7 @@
   </main>
 
   <script>
-    const orderId = localStorage.getItem('orderId') || '--';
-    const customerName = localStorage.getItem('customerName') || '--';
-    const serviceType = localStorage.getItem('serviceType') || '--';
-    const paymentMethod = localStorage.getItem('paymentMethod') || '--';
-    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-
-    document.getElementById('receiptId').textContent = orderId;
-    document.getElementById('receiptCustomer').textContent = customerName;
-    document.getElementById('receiptService').textContent = serviceType;
-    document.getElementById('receiptTotal').textContent = '₱' + localStorage.getItem('totalAmount');
-    document.getElementById('receiptPayment').textContent = paymentMethod;
-
-    const itemsContainer = document.getElementById('receiptItems');
-    const items = Object.entries(cart).filter(([_, v]) => v.qty > 0);
-
-    items.forEach(([name, v]) => {
-      const row = document.createElement('div');
-      row.style.display = 'flex';
-      row.style.justifyContent = 'space-between';
-      row.style.marginBottom = '4px';
-      row.style.fontWeight = 'bold';
-      row.style.fontSize = '12px';
-      const customization = v.customization ? ` (${v.customization})` : '';
-      row.innerHTML = `
-        <span>${v.qty}x ${name}${customization}</span>
-        <span>₱${v.qty * v.price}</span>
-      `;
-      itemsContainer.appendChild(row);
-    });
+    const orderId = localStorage.getItem('orderId');
 
     function clearAndRedirect() {
       localStorage.removeItem('customerName');
@@ -85,8 +57,7 @@
 
     let seconds = 15;
     const countdownEl = document.getElementById('countdownNum');
-
-    const timer = setInterval(function () {
+    const timer = setInterval(function() {
       seconds--;
       countdownEl.textContent = seconds;
       if (seconds <= 0) {
@@ -94,6 +65,54 @@
         clearAndRedirect();
       }
     }, 1000);
+
+    if (!orderId) {
+      document.getElementById('receiptId').textContent = '--';
+      document.getElementById('receiptCustomer').textContent = '--';
+      document.getElementById('receiptService').textContent = '--';
+      document.getElementById('receiptTotal').textContent = '--';
+      document.getElementById('receiptPayment').textContent = '--';
+    } else {
+      document.getElementById('receiptId').textContent = orderId;
+
+      fetch(`/api/get-receipt/${orderId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success' && data.receipt.length > 0) {
+            const first = data.receipt[0];
+
+            document.getElementById('receiptCustomer').textContent = first.customerName;
+            document.getElementById('receiptService').textContent = first.serviceType;
+            document.getElementById('receiptTotal').textContent = '₱' + parseFloat(first.totalAmount).toFixed(2);
+            document.getElementById('receiptPayment').textContent = first.paymentOption;
+
+            const itemsContainer = document.getElementById('receiptItems');
+            data.receipt.forEach(row => {
+              const div = document.createElement('div');
+              div.style.display = 'flex';
+              div.style.justifyContent = 'space-between';
+              div.style.marginBottom = '4px';
+              div.style.fontWeight = 'bold';
+              div.style.fontSize = '12px';
+              const customization = row.customization ? ` (${row.customization})` : '';
+              div.innerHTML = `
+                <span>${row.quantity}x ${row.itemName}${customization}</span>
+                <span>₱${(row.quantity * parseFloat(row.price)).toFixed(2)}</span>
+              `;
+              itemsContainer.appendChild(div);
+            });
+
+          } else {
+            document.getElementById('receiptCustomer').textContent = '--';
+            document.getElementById('receiptService').textContent = '--';
+            document.getElementById('receiptTotal').textContent = '--';
+            document.getElementById('receiptPayment').textContent = '--';
+          }
+        })
+        .catch(err => {
+          console.error('Failed to fetch receipt:', err);
+        });
+    }
   </script>
 
 </body>

@@ -12,7 +12,9 @@
 <body>
 
   <nav class="navbar">
-    <h1 class="logo">Roderick Café</h1>
+    <a href="/" style="text-decoration:none;">
+      <h1 class="logo">Roderick Café</h1>
+    </a>
     <div class="nav-links">
       <a href="/">Home</a>
       <a href="/menu">Menu</a>
@@ -26,6 +28,7 @@
   <main style="max-width:1100px; margin:0 auto; padding:20px 40px 60px;">
 
     <h2 class="cart-title">Your Cart</h2>
+    <p id="cartWarning" class="cart-warning"></p>
 
     <div class="cart-layout">
 
@@ -89,105 +92,113 @@
   </footer>
 
   <script>
-  const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
 
-  const container = document.getElementById('cartItems');
-  const totalQtyEl = document.getElementById('totalQty');
-  const totalAmountEl = document.getElementById('totalAmount');
+    const container = document.getElementById('cartItems');
+    const totalQtyEl = document.getElementById('totalQty');
+    const totalAmountEl = document.getElementById('totalAmount');
+    const warning = document.getElementById('cartWarning');
 
-  const items = Object.entries(cart).filter(([_, v]) => v.qty > 0);
+    const items = Object.entries(cart).filter(([_, v]) => v.qty > 0);
 
-  if (items.length === 0) {
-    container.innerHTML = '<p class="cart-empty">No items in cart yet.</p>';
-  } else {
-    container.innerHTML = '';
-    let totalQty = 0;
-    let totalAmount = 0;
+    if (items.length === 0) {
+      container.innerHTML = '<p class="cart-empty">No items in cart yet.</p>';
+    } else {
+      container.innerHTML = '';
+      let totalQty = 0;
+      let totalAmount = 0;
 
-    items.forEach(([name, v]) => {
-      totalQty += v.qty;
-      totalAmount += v.qty * v.price;
+      items.forEach(([name, v]) => {
+        totalQty += v.qty;
+        totalAmount += v.qty * v.price;
 
-      const row = document.createElement('div');
-      row.className = 'cart-row';
-      row.innerHTML = `
-        <div class="cart-row-info">
-          <div class="cart-row-name">${name}</div>
-          <div class="cart-row-meta">
-            <span class="cart-qty">${v.qty}x</span>
-            <span class="cart-price">₱${v.price * v.qty}</span>
+        const row = document.createElement('div');
+        row.className = 'cart-row';
+        row.innerHTML = `
+          <div class="cart-row-info">
+            <div class="cart-row-name">${name}</div>
+            <div class="cart-row-meta">
+              <span class="cart-qty">${v.qty}x</span>
+              <span class="cart-price">₱${v.price * v.qty}</span>
+            </div>
           </div>
-        </div>
-        <textarea class="cart-customize" placeholder="Add customization notes..." data-item="${name}"></textarea>
-      `;
-      container.appendChild(row);
-    });
+          <textarea class="cart-customize" placeholder="Add customization notes..." data-item="${name}"></textarea>
+        `;
+        container.appendChild(row);
+      });
 
-    totalQtyEl.textContent = totalQty;
-    totalAmountEl.textContent = '₱' + totalAmount;
-  }
-
-  document.querySelectorAll('.payment-method-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.payment-method-btn').forEach(b => b.classList.remove('selected'));
-      this.classList.add('selected');
-      localStorage.setItem('paymentMethod', this.id === 'cashPaymentBtn' ? 'Cash' : 'Card');
-    });
-  });
-
-  document.getElementById('placeOrderBtn').addEventListener('click', function() {
-    const customerName = localStorage.getItem('customerName') || 'Guest';
-    const serviceType = localStorage.getItem('serviceType') || 'Dine-in';
-    const paymentOption = localStorage.getItem('paymentMethod') || 'Cash';
-
-    if (!localStorage.getItem('paymentMethod')) {
-      alert('Please select a payment method first!');
-      return;
+      totalQtyEl.textContent = totalQty;
+      totalAmountEl.textContent = '₱' + totalAmount;
     }
 
-    const cartItems = items.map(([name, v]) => {
-      const textarea = document.querySelector(`textarea[data-item="${name}"]`);
-      const customization = textarea ? textarea.value : '';
-      cart[name].customization = customization;
-      return {
-        name: name,
-        qty: v.qty,
-        price: v.price,
-        customization: customization
-      };
+    document.querySelectorAll('.payment-method-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.payment-method-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        localStorage.setItem('paymentMethod', this.id === 'cashPaymentBtn' ? 'Cash' : 'Card');
+        warning.textContent = '';
+      });
     });
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    const totalAmount = cartItems.reduce((sum, item) => sum + item.qty * item.price, 0);
-
-    fetch('/api/place-order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        customerName: customerName,
-        serviceType: serviceType,
-        paymentOption: paymentOption,
-        totalAmount: totalAmount,
-        items: cartItems
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === 'success') {
-        const totalAmount = cartItems.reduce((sum, item) => sum + item.qty * item.price, 0);
-        localStorage.setItem('orderId', data.order_id);
-        localStorage.setItem('totalAmount', totalAmount);
-        window.location.href = '/receipt';
-      } else {
-        alert('Order failed: ' + data.message);
+    document.getElementById('placeOrderBtn').addEventListener('click', function() {
+      if (items.length === 0) {
+        warning.textContent = 'Please order something first!';
+        return;
       }
-    })
-    .catch(err => {
-      alert('Something went wrong. Please try again.');
-      console.error(err);
+
+      if (!localStorage.getItem('paymentMethod')) {
+        warning.textContent = 'Please select a payment method first!';
+        return;
+      }
+
+      warning.textContent = '';
+
+      const customerName = localStorage.getItem('customerName') || 'Guest';
+      const serviceType = localStorage.getItem('serviceType') || 'Dine-in';
+      const paymentOption = localStorage.getItem('paymentMethod');
+
+      const cartItems = items.map(([name, v]) => {
+        const textarea = document.querySelector(`textarea[data-item="${name}"]`);
+        const customization = textarea ? textarea.value : '';
+        cart[name].customization = customization;
+        return {
+          name: name,
+          qty: v.qty,
+          price: v.price,
+          customization: customization
+        };
+      });
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      const totalAmount = cartItems.reduce((sum, item) => sum + item.qty * item.price, 0);
+
+      fetch('/api/place-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: customerName,
+          serviceType: serviceType,
+          paymentOption: paymentOption,
+          totalAmount: totalAmount,
+          items: cartItems
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          localStorage.setItem('orderId', data.order_id);
+          localStorage.setItem('totalAmount', totalAmount);
+          window.location.href = '/receipt';
+        } else {
+          warning.textContent = 'Order failed: ' + data.message;
+        }
+      })
+      .catch(err => {
+        warning.textContent = 'Something went wrong. Please try again.';
+        console.error(err);
+      });
     });
-  });
   </script>
 
 </body>
