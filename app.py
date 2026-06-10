@@ -34,6 +34,10 @@ def order():
 def order_menu():
     return render_template('order-menu.html')
 
+@app.route('/admin')
+def admin():
+    return render_template('admin-page.html')
+
 
 @app.route('/api/get-stock')
 def get_stock():
