@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2026 at 09:18 AM
+-- Generation Time: Jun 11, 2026 at 10:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,7 +64,8 @@ INSERT INTO `customers` (`customer_id`, `customerName`) VALUES
 (6, 'JAWEL'),
 (7, 'Jacob'),
 (8, 'Maria'),
-(9, 'Pepot');
+(9, 'Cousin'),
+(10, 'Celine');
 
 -- --------------------------------------------------------
 
@@ -87,9 +88,9 @@ CREATE TABLE `menu_items` (
 INSERT INTO `menu_items` (`item_id`, `itemName`, `category`, `price`, `stock`) VALUES
 (100, 'Americano', 'Coffee', 130.00, 45),
 (101, 'Latte', 'Coffee', 145.00, 47),
-(102, 'Macchiato', 'Coffee', 150.00, 46),
+(102, 'Macchiato', 'Coffee', 150.00, 45),
 (103, 'Cappuccino', 'Coffee', 150.00, 50),
-(104, 'Matcha', 'Non-Coffee', 130.00, 48),
+(104, 'Matcha', 'Non-Coffee', 130.00, 47),
 (105, 'Cookies-and-Cream', 'Non-Coffee', 140.00, 49),
 (106, 'Strawberry', 'Non-Coffee', 140.00, 49),
 (107, 'Brownies', 'Pastries', 90.00, 49),
@@ -124,7 +125,8 @@ INSERT INTO `orders` (`order_id`, `customer_id`, `serviceType`, `paymentOption`,
 (5006, 6, 'Dine-in', 'Cash', 130.00),
 (5007, 7, 'Take-out', 'Card', 145.00),
 (5008, 8, 'Take-out', 'Card', 130.00),
-(5009, 9, 'Take-out', 'Card', 270.00);
+(5009, 9, 'Take-out', 'Card', 270.00),
+(5010, 10, 'Take-out', 'Card', 280.00);
 
 -- --------------------------------------------------------
 
@@ -162,7 +164,9 @@ INSERT INTO `order_details` (`detail_id`, `order_id`, `item_id`, `quantity`, `cu
 (9014, 5007, 101, 1, ''),
 (9015, 5008, 104, 1, ''),
 (9016, 5009, 104, 1, ''),
-(9017, 5009, 105, 1, '');
+(9017, 5009, 105, 1, ''),
+(9018, 5010, 102, 1, ''),
+(9019, 5010, 104, 1, '');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +207,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `menu_items`
@@ -215,13 +219,13 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5010;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5011;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9018;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9020;
 
 --
 -- Constraints for dumped tables

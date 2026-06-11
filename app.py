@@ -107,7 +107,9 @@ def admin_dashboard():
     try:
         connection = get_db_connection()
         with connection.cursor() as cursor:
-            cursor.execute("SELECT COUNT(*) AS total_orders FROM orders")
+
+            # GROUP BY: Total quantity of all items ordered across all transactions
+            cursor.execute("SELECT SUM(quantity) AS total_orders FROM order_details")
             total_orders = cursor.fetchone()['total_orders'] or 0
 
             cursor.execute("SELECT SUM(totalAmount) AS total FROM orders")
@@ -197,6 +199,24 @@ def get_receipt(order_id):
             return jsonify({"status": "error", "message": "Order not found."}), 404
 
         return jsonify({"status": "success", "receipt": rows})
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+    finally:
+        connection.close()
+
+@app.route('/api/get-stock')
+def get_stock():
+    connection = get_db_connection()
+    try:
+        with connection.cursor() as cursor:
+            # SELECT: Retrieves item name and stock for all menu items
+            # Used to display out-of-stock status on the order-menu page
+            cursor.execute("SELECT itemName, stock FROM menu_items")
+            items = cursor.fetchall()
+
+        return jsonify({"status": "success", "items": items})
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
