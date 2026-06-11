@@ -28,17 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `admin_id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password_hash` varchar(255) NOT NULL
+  `admin_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `username`, `password_hash`) VALUES
-(3, 'admin', '32768:8:1$rVOOzf9TkW5IqNRI$f331a4d6e6773740a6eeafba450a285818de721c0a1cec312548f7e54927410355d2688211ccd2100d76a4877778075abce2adf131aa74ff1b01391cb6d3b28e');
+INSERT INTO `admin` (`admin_id`, `username`, `password`) VALUES
+(1, 'admin', 'admin123');
 
 -- --------------------------------------------------------
 

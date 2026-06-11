@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | Roderick Café</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <a href="/" style="text-decoration:none;">
+      <h1 class="logo">Roderick Café</h1>
+    </a>
+    <div class="admin-nav-right">
+      <span class="admin-user-tag">
+        Logged in as: <strong>{{ session.get('admin_user', 'Admin') }}</strong>
+      </span>
+      <a href="{{ url_for('admin_logout') }}" class="logout-btn-link">LOGOUT</a>
+    </div>
+  </nav>
+
+  <!-- ── MAIN DASHBOARD ── -->
+  <main class="dashboard-wrapper">
+
+    <div class="dashboard-page-title">
+      <h2 class="dashboard-heading">Sales Report Summary</h2>
+    </div>
+
+    <!-- ── METRIC CARDS ROW ── -->
+    <div class="metrics-grid">
+
+      <div class="metric-card">
+        <span class="metric-label">Total number of orders</span>
+        <p class="metric-value">{{ total_orders }}</p>
+      </div>
+
+      <div class="metric-card revenue-card">
+        <span class="metric-label">Total revenue</span>
+        <div class="revenue-split-box">
+          <p class="metric-value">₱{{ "%.0f"|format(total_rev) }}</p>
+          <div class="revenue-right">
+            <div><span>Cash</span> ₱{{ "%.0f"|format(cash_rev) }}</div>
+            <div><span>Card</span> ₱{{ "%.0f"|format(card_rev) }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Total number of customers</span>
+        <p class="metric-value">{{ total_customers }}</p>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">Most Ordered Item</span>
+        <p class="metric-value item-highlight-txt">{{ most_ordered_item }}</p>
+      </div>
+
+    </div>
+
+    <!-- ── DATA TABLES ROW ── -->
+    <div class="dashboard-data-split">
+
+      <!-- Order History -->
+      <div class="data-panel-box">
+        <h2 class="panel-heading">Customers</h2>
+        <div class="table-scroll-container">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Service Type</th>
+                <th>Payment</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders_history %}
+              <tr>
+                <td><strong>#{{ order.order_id }}</strong></td>
+                <td>{{ order.customerName }}</td>
+                <td><span class="badge badge-service">{{ order.serviceType }}</span></td>
+                <td>{{ order.paymentOption }}</td>
+                <td>₱{{ "%.2f"|format(order.totalAmount) }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="5" class="empty-table-text">No transaction logs found.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Stock Levels -->
+      <div class="data-panel-box">
+        <h2 class="panel-heading">Current Stocks</h2>
+        <div class="table-scroll-container">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th style="text-align:center;">Stock</th>
+                <th style="text-align:center;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in stock_levels %}
+              <tr>
+                <td>{{ item.itemName }}</td>
+                <td style="text-align:center;"><strong>{{ item.stock }}</strong></td>
+                <td style="text-align:center;">
+                  {% if item.stock <= 0 %}
+                    <span class="status-indicator out-of-stock">Out of Stock</span>
+                  {% elif item.stock <= 15 %}
+                    <span class="status-indicator low-stock">Low Stock</span>
+                  {% else %}
+                    <span class="status-indicator good-stock">Healthy</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="3" class="empty-table-text">No items found.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-left">
+        Aviles, Armi Jhon A.<br>
+        Igloso, Mark Jacob S.<br>
+        Orfella Jr, Roderick Roxas
+      </div>
+      <div class="footer-right">
+        SPONSORED BY BAKE ME, BEBU
+      </div>
+    </div>
+    <div class="footer-line"></div>
+    <div class="footer-bottom">
+      <div class="copyright">
+        © Roderick Café Ordering System. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
