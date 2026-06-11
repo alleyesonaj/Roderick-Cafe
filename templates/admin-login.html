@@ -18,50 +18,47 @@
     </a>
   </nav>
 
-  <main>
-    <div class="order-form-box">
-      <h2 class="order-title">Admin Login</h2>
-      <p class="order-subtitle">Enter your credentials to access the admin panel</p>
+  <main class="admin-login-main">
+    <div class="admin-login-card">
+
+      <div class="admin-login-header">
+        <h2 class="admin-login-title">Admin Login</h2>
+        <p class="admin-login-subtitle">Enter your credentials to access the manager dashboard</p>
+      </div>
 
       {% if error %}
-        <p style="
-          font-family: 'Unbounded', sans-serif;
-          font-size: 12px;
-          color: #C0392B;
-          font-weight: 700;
-          text-align: center;
-          margin-bottom: 16px;
-        ">{{ error }}</p>
+        <div class="admin-error-msg">{{ error }}</div>
       {% endif %}
 
       <form method="POST" action="{{ url_for('admin_login') }}">
 
-        <div class="form-group">
-          <label class="form-label-with-icon">
-            USERNAME
-          </label>
+        <div class="admin-field-group">
+          <label class="admin-field-label">USERNAME</label>
           <input
             type="text"
             name="username"
+            class="admin-input-box"
             placeholder="Enter admin username"
-            autocomplete="off"
             value="{{ request.form.get('username', '') }}"
+            autocomplete="off"
+            required
           >
         </div>
 
-        <div class="form-group">
-          <label class="form-label-with-icon">
-            PASSWORD
-          </label>
+        <div class="admin-field-group">
+          <label class="admin-field-label">PASSWORD</label>
           <input
             type="password"
             name="password"
+            class="admin-input-box"
             placeholder="Enter admin password"
-            autocomplete="off"
+            autocomplete="new-password"
+            style="-webkit-appearance:none; appearance:none;"
+            required
           >
         </div>
 
-        <button type="submit" class="proceed-btn">LOGIN</button>
+        <button type="submit" class="admin-submit-btn">LOGIN</button>
 
       </form>
     </div>
@@ -85,7 +82,6 @@
         <img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram">
         <img src="{{ url_for('static', filename='images/tiktok.png') }}" alt="TikTok">
         <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter">
-        <img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="LinkedIn">
       </div>
       <div class="copyright">
         © Roderick Café Ordering System. All rights reserved.

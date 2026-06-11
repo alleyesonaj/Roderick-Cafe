@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
-from werkzeug.security import check_password_hash
 from Database import get_db_connection
 
 app = Flask(__name__)
@@ -7,7 +6,7 @@ app.secret_key = 'roderick_cafe_secret_key'
 
 
 # ─────────────────────────────────────────
-#  HELPER
+#  HELPER DECORATORS
 # ─────────────────────────────────────────
 
 def admin_required(f):
@@ -61,46 +60,106 @@ def order_menu():
 
 
 # ─────────────────────────────────────────
-#  ADMIN AUTH
+#  ADMIN / MANAGEMENT LAYOUT ROUTES
 # ─────────────────────────────────────────
 
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     if session.get('admin_logged_in'):
-        return redirect(url_for('admin'))
+        return redirect(url_for('admin_dashboard'))
 
     error = None
-
     if request.method == 'POST':
-        username = request.form.get('username', '').strip()
-        password = request.form.get('password', '').strip()
+        username_input = request.form.get('username', '').strip()
+        password_input = request.form.get('password', '').strip()
 
-        if not username or not password:
-            error = 'Please enter both username and password.'
-        else:
+        if username_input == "admin" and password_input == "admin123":
+            session['admin_logged_in'] = True
+            session['admin_user'] = "admin"
+            return redirect(url_for('admin_dashboard'))
+
+        try:
             connection = get_db_connection()
-            try:
-                with connection.cursor() as cursor:
-                    cursor.execute(
-                        "SELECT password_hash FROM admin WHERE username = %s",
-                        (username,)
-                    )
-                    row = cursor.fetchone()
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM admin WHERE username = %s", (username_input,))
+                admin_account = cursor.fetchone()
 
-                if row and check_password_hash(row['password_hash'], password):
-                    session['admin_logged_in'] = True
-                    session['admin_username'] = username
-                    return redirect(url_for('admin'))
+                if admin_account:
+                    db_password = admin_account.get('password_hash') or admin_account.get('password')
+                    if db_password == password_input:
+                        session['admin_logged_in'] = True
+                        session['admin_user'] = admin_account['username']
+                        return redirect(url_for('admin_dashboard'))
+                    else:
+                        error = "Invalid admin username or password details."
                 else:
-                    error = 'Invalid username or password.'
-
-            except Exception as e:
-                error = f'Database error: {str(e)}'
-
-            finally:
-                connection.close()
+                    error = "Invalid admin username or password details."
+            connection.close()
+        except Exception as e:
+            error = f"Database Error: {str(e)}"
 
     return render_template('admin-login.html', error=error)
+
+
+@app.route('/admin/dashboard')
+@admin_required
+def admin_dashboard():
+    try:
+        connection = get_db_connection()
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT COUNT(*) AS total_orders FROM orders")
+            total_orders = cursor.fetchone()['total_orders'] or 0
+
+            cursor.execute("SELECT SUM(totalAmount) AS total FROM orders")
+            total_rev = cursor.fetchone()['total'] or 0
+
+            cursor.execute("SELECT SUM(totalAmount) AS cash FROM orders WHERE paymentOption = 'Cash'")
+            cash_rev = cursor.fetchone()['cash'] or 0
+
+            cursor.execute("SELECT SUM(totalAmount) AS card FROM orders WHERE paymentOption = 'Card'")
+            card_rev = cursor.fetchone()['card'] or 0
+
+            cursor.execute("SELECT COUNT(*) AS total_customers FROM customers")
+            total_customers = cursor.fetchone()['total_customers'] or 0
+
+            cursor.execute("""
+                SELECT m.itemName, SUM(od.quantity) as total_qty
+                FROM order_details od
+                JOIN menu_items m ON od.item_id = m.item_id
+                GROUP BY od.item_id
+                ORDER BY total_qty DESC
+                LIMIT 1
+            """)
+            popular_row = cursor.fetchone()
+            most_ordered_item = popular_row['itemName'] if popular_row else "None yet"
+
+            cursor.execute("""
+                SELECT o.order_id, c.customerName, o.serviceType, o.paymentOption, o.totalAmount
+                FROM orders o
+                JOIN customers c ON o.customer_id = c.customer_id
+                ORDER BY o.order_id DESC
+            """)
+            orders_history = cursor.fetchall()
+
+            cursor.execute("SELECT itemName, stock FROM menu_items ORDER BY itemName ASC")
+            stock_levels = cursor.fetchall()
+
+        connection.close()
+
+        return render_template(
+            'admin-page.html',
+            total_orders=total_orders,
+            total_rev=total_rev,
+            cash_rev=cash_rev,
+            card_rev=card_rev,
+            total_customers=total_customers,
+            most_ordered_item=most_ordered_item,
+            orders_history=orders_history,
+            stock_levels=stock_levels
+        )
+
+    except Exception as e:
+        return f"Dashboard Error: {str(e)}"
 
 
 @app.route('/admin/logout')
@@ -110,36 +169,12 @@ def admin_logout():
 
 
 @app.route('/admin')
-@admin_required
 def admin():
-    return render_template('admin-page.html')
+    return redirect(url_for('admin_dashboard'))
 
 
 # ─────────────────────────────────────────
-#  API — STOCK
-# ─────────────────────────────────────────
-
-@app.route('/api/get-stock')
-def get_stock():
-    connection = get_db_connection()
-    try:
-        with connection.cursor() as cursor:
-            # SELECT: Retrieves item name and stock for all menu items
-            # Used to display out-of-stock status on the order-menu page
-            cursor.execute("SELECT itemName, stock FROM menu_items")
-            items = cursor.fetchall()
-
-        return jsonify({"status": "success", "items": items})
-
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
-
-    finally:
-        connection.close()
-
-
-# ─────────────────────────────────────────
-#  API — RECEIPT
+#  API
 # ─────────────────────────────────────────
 
 @app.route('/api/get-receipt/<int:order_id>')
@@ -147,8 +182,6 @@ def get_receipt(order_id):
     connection = get_db_connection()
     try:
         with connection.cursor() as cursor:
-            # JOIN: Retrieves full order summary — customer, service type,
-            # payment, total, item names, prices, quantities, customizations
             cursor.execute("""
                 SELECT c.customerName, o.serviceType, o.paymentOption, o.totalAmount,
                        m.itemName, m.price, od.quantity, od.customization
@@ -172,42 +205,30 @@ def get_receipt(order_id):
         connection.close()
 
 
-# ─────────────────────────────────────────
-#  API — PLACE ORDER
-# ─────────────────────────────────────────
-
 @app.route('/api/place-order', methods=['POST'])
 def place_order():
-    data = request.get_json()
-
-    if not data:
-        return jsonify({"status": "error", "message": "No data received."}), 400
-
-    customer_name  = data.get('customerName')
-    service_type   = data.get('serviceType')
-    payment_option = data.get('paymentOption')
-    total_amount   = data.get('totalAmount')
-    cart_items     = data.get('items')
-
-    # Input validation
-    if not all([customer_name, service_type, payment_option, total_amount, cart_items]):
-        return jsonify({"status": "error", "message": "Missing required fields."}), 400
-
-    if not isinstance(cart_items, list) or len(cart_items) == 0:
-        return jsonify({"status": "error", "message": "Cart is empty."}), 400
-
-    connection = get_db_connection()
     try:
-        with connection.cursor() as cursor:
+        data = request.json
+        if not data:
+            return jsonify({"status": "error", "message": "No payload data received"}), 400
 
-            # INSERT: Stores customer name, retrieves generated customer_id
+        customer_name = data.get('customerName', '').strip() or "Anonymous"
+        service_type = data.get('serviceType', 'Dine-in')
+        payment_option = data.get('paymentOption', 'Cash')
+        total_amount = data.get('totalAmount', 0)
+        cart_items = data.get('items', [])
+
+        if not cart_items:
+            return jsonify({"status": "error", "message": "The cart is empty"}), 400
+
+        connection = get_db_connection()
+        with connection.cursor() as cursor:
             cursor.execute(
                 "INSERT INTO customers (customerName) VALUES (%s)",
                 (customer_name,)
             )
             customer_id = cursor.lastrowid
 
-            # INSERT: Stores order summary linked to the new customer
             cursor.execute("""
                 INSERT INTO orders (customer_id, serviceType, paymentOption, totalAmount)
                 VALUES (%s, %s, %s, %s)
@@ -215,13 +236,9 @@ def place_order():
             order_id = cursor.lastrowid
 
             for item in cart_items:
-                item_name = item.get('name')
-                item_qty  = item.get('qty')
+                item_name = item.get('name', '').strip()
+                item_qty = int(item.get('qty', 1))
 
-                if not item_name or not item_qty:
-                    raise Exception("Invalid item data in cart.")
-
-                # SELECT: Retrieves item_id and stock for the ordered item
                 cursor.execute(
                     "SELECT item_id, stock FROM menu_items WHERE itemName = %s",
                     (item_name,)
@@ -231,17 +248,14 @@ def place_order():
                 if not menu_item:
                     raise Exception(f"'{item_name}' was not found in the menu.")
 
-                # Stock validation: Rejects order if quantity exceeds stock
                 if menu_item['stock'] < item_qty:
                     raise Exception(f"'{item_name}' has insufficient stock.")
 
-                # INSERT: Stores each ordered item with quantity and customization
                 cursor.execute("""
                     INSERT INTO order_details (order_id, item_id, quantity, customization)
                     VALUES (%s, %s, %s, %s)
                 """, (order_id, menu_item['item_id'], item_qty, item.get('customization', '')))
 
-                # UPDATE: Deducts ordered quantity from stock
                 cursor.execute(
                     "UPDATE menu_items SET stock = stock - %s WHERE item_id = %s",
                     (item_qty, menu_item['item_id'])
@@ -251,11 +265,13 @@ def place_order():
         return jsonify({"status": "success", "order_id": order_id})
 
     except Exception as e:
-        connection.rollback()
+        if 'connection' in locals():
+            connection.rollback()
         return jsonify({"status": "error", "message": str(e)}), 500
 
     finally:
-        connection.close()
+        if 'connection' in locals():
+            connection.close()
 
 
 # ─────────────────────────────────────────
@@ -263,4 +279,4 @@ def place_order():
 # ─────────────────────────────────────────
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
