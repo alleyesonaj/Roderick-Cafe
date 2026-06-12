@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2026 at 10:00 AM
+-- Generation Time: Jun 12, 2026 at 05:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -86,14 +86,14 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`item_id`, `itemName`, `category`, `price`, `stock`) VALUES
-(100, 'Americano', 'Coffee', 130.00, 45),
+(100, 'Americano', 'Coffee', 130.00, 47),
 (101, 'Latte', 'Coffee', 145.00, 47),
 (102, 'Macchiato', 'Coffee', 150.00, 45),
 (103, 'Cappuccino', 'Coffee', 150.00, 50),
 (104, 'Matcha', 'Non-Coffee', 130.00, 47),
 (105, 'Cookies-and-Cream', 'Non-Coffee', 140.00, 49),
 (106, 'Strawberry', 'Non-Coffee', 140.00, 49),
-(107, 'Brownies', 'Pastries', 90.00, 49),
+(107, 'Brownies', 'Pastries', 90.00, 40),
 (108, 'Banana-Bread', 'Pastries', 120.00, 48),
 (109, 'Smores', 'Pastries', 90.00, 0),
 (110, 'Crinkles', 'Pastries', 80.00, 50);
