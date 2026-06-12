@@ -38,7 +38,7 @@
       </a>
     </div>
 
-    
+    <!-- COFFEE SECTION -->
     <div class="menu-section">
       <h3 class="menu-category-label">COFFEE</h3>
       <div class="menu-display-grid grid-4">
@@ -106,7 +106,7 @@
       </div>
     </div>
 
-    
+    <!-- NON-COFFEE SECTION -->
     <div class="menu-section">
       <h3 class="menu-category-label">NON-COFFEE</h3>
       <div class="menu-display-grid grid-3">
@@ -159,7 +159,7 @@
       </div>
     </div>
 
-    
+    <!-- PASTRIES SECTION -->
     <div class="menu-section">
       <h3 class="menu-category-label">PASTRIES</h3>
       <div class="menu-display-grid grid-4">
@@ -235,6 +235,42 @@
     document.getElementById('orderGreeting').innerText = `Ordering for: ${customerName} (${serviceType})`;
 
     const cart = {};
+
+    fetch('/api/get-stock')
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          data.items.forEach(item => {
+            const itemName = item.itemName;
+            const stock = item.stock;
+
+            const plusBtn = document.querySelector(`.plus-btn[data-item="${itemName}"]`);
+            const minusBtn = document.querySelector(`.minus-btn[data-item="${itemName}"]`);
+            const card = plusBtn ? plusBtn.closest('.menu-display-item') : null;
+
+            if (stock === 0 && card) {
+              if (plusBtn) plusBtn.disabled = true;
+              if (minusBtn) minusBtn.disabled = true;
+
+              const badge = document.createElement('div');
+              badge.className = 'out-of-stock-badge';
+              badge.textContent = 'OUT OF STOCK';
+              card.appendChild(badge);
+              card.classList.add('out-of-stock-card');
+
+              if (cart[itemName]) {
+                delete cart[itemName];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                const span = document.getElementById('qty-' + itemName);
+                if (span) span.textContent = '';
+              }
+            }
+          });
+        }
+      })
+      .catch(err => {
+        console.error('Failed to fetch stock:', err);
+      });
 
     document.querySelectorAll('.plus-btn').forEach(btn => {
       btn.addEventListener('click', function() {

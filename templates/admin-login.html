@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | Roderick Café</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Manrope:wght@700;800&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+  <nav class="navbar navbar--login">
+    <a href="/" style="text-decoration:none;">
+      <h1 class="logo">Roderick Café</h1>
+    </a>
+  </nav>
+
+  <main class="admin-login-main">
+    <div class="admin-login-card">
+
+      <div class="admin-login-header">
+        <h2 class="admin-login-title">Admin Login</h2>
+        <p class="admin-login-subtitle">Enter your credentials to access the manager dashboard</p>
+      </div>
+
+      {% if error %}
+        <div class="admin-error-msg">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST" action="{{ url_for('admin_login') }}">
+
+        <div class="admin-field-group">
+          <label class="admin-field-label">USERNAME</label>
+          <input
+            type="text"
+            name="username"
+            class="admin-input-box"
+            placeholder="Enter admin username"
+            value="{{ request.form.get('username', '') }}"
+            autocomplete="off"
+            required
+          >
+        </div>
+
+        <div class="admin-field-group">
+          <label class="admin-field-label">PASSWORD</label>
+          <input
+            type="password"
+            name="password"
+            class="admin-input-box"
+            placeholder="Enter admin password"
+            autocomplete="new-password"
+            style="-webkit-appearance:none; appearance:none;"
+            required
+          >
+        </div>
+
+        <button type="submit" class="admin-submit-btn">LOGIN</button>
+
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>
