@@ -224,6 +224,50 @@ def get_stock():
     finally:
         connection.close()
 
+@app.route('/api/update-stock', methods=['POST'])
+@admin_required
+def update_stock():
+    try:
+        data = request.json
+        if not data:
+            return jsonify({"status": "error", "message": "No payload data received"}), 400
+
+        item_name = data.get('itemName')
+        change = data.get('change')
+
+        if not item_name or change is None:
+            return jsonify({"status": "error", "message": "Missing itemName or change value"}), 400
+            
+        change = int(change)
+
+        connection = get_db_connection()
+        with connection.cursor() as cursor:
+            # Get current stock
+            cursor.execute("SELECT stock FROM menu_items WHERE itemName = %s", (item_name,))
+            item = cursor.fetchone()
+            
+            if not item:
+                return jsonify({"status": "error", "message": "Item not found"}), 404
+                
+            new_stock = item['stock'] + change
+            if new_stock < 0:
+                new_stock = 0
+                
+            # Update stock
+            cursor.execute("UPDATE menu_items SET stock = %s WHERE itemName = %s", (new_stock, item_name))
+        
+        connection.commit()
+        return jsonify({"status": "success", "new_stock": new_stock})
+        
+    except Exception as e:
+        if 'connection' in locals():
+            connection.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+        
+    finally:
+        if 'connection' in locals():
+            connection.close()
+
 
 @app.route('/api/place-order', methods=['POST'])
 def place_order():

@@ -109,14 +109,15 @@
                 <th>Item</th>
                 <th style="text-align:center;">Stock</th>
                 <th style="text-align:center;">Status</th>
+                <th style="text-align:center;">Action</th>
               </tr>
             </thead>
             <tbody>
               {% for item in stock_levels %}
               <tr>
                 <td>{{ item.itemName }}</td>
-                <td style="text-align:center;"><strong>{{ item.stock }}</strong></td>
-                <td style="text-align:center;">
+                <td style="text-align:center;"><strong id="stock-value-{{ item.itemName|replace(' ', '-') }}">{{ item.stock }}</strong></td>
+                <td style="text-align:center;" id="stock-status-{{ item.itemName|replace(' ', '-') }}">
                   {% if item.stock <= 0 %}
                     <span class="status-indicator out-of-stock">Out of Stock</span>
                   {% elif item.stock <= 15 %}
@@ -125,10 +126,16 @@
                     <span class="status-indicator good-stock">Healthy</span>
                   {% endif %}
                 </td>
+                <td style="text-align:center;">
+                  <div class="qty-controls" style="justify-content:center; transform: scale(0.85); transform-origin: center;">
+                    <button class="qty-btn minus-btn" onclick="updateStock('{{ item.itemName }}', -1)">−</button>
+                    <button class="qty-btn plus-btn" onclick="updateStock('{{ item.itemName }}', 1)">+</button>
+                  </div>
+                </td>
               </tr>
               {% else %}
               <tr>
-                <td colspan="3" class="empty-table-text">No items found.</td>
+                <td colspan="4" class="empty-table-text">No items found.</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -159,5 +166,47 @@
     </div>
   </footer>
 
+  <script>
+    function updateStock(itemName, change) {
+      fetch('/api/update-stock', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ itemName: itemName, change: change })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          // Update the stock value in the table
+          const safeId = itemName.replace(/ /g, '-');
+          const stockValueEl = document.getElementById('stock-value-' + safeId);
+          if (stockValueEl) {
+            stockValueEl.innerText = data.new_stock;
+          }
+          
+          // Update the status indicator
+          const stockStatusEl = document.getElementById('stock-status-' + safeId);
+          if (stockStatusEl) {
+            let statusHtml = '';
+            if (data.new_stock <= 0) {
+              statusHtml = '<span class="status-indicator out-of-stock">Out of Stock</span>';
+            } else if (data.new_stock <= 15) {
+              statusHtml = '<span class="status-indicator low-stock">Low Stock</span>';
+            } else {
+              statusHtml = '<span class="status-indicator good-stock">Healthy</span>';
+            }
+            stockStatusEl.innerHTML = statusHtml;
+          }
+        } else {
+          alert('Failed to update stock: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error updating stock:', error);
+        alert('An error occurred while updating the stock.');
+      });
+    }
+  </script>
 </body>
 </html>
